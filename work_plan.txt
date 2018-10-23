@@ -1,0 +1,24 @@
+Vivien Chen, Lauren Pudvan & Samantha Young
+
+Obtain good code for ALU, shift register, data memory, mux, other basic building blocks - 1 hour - DUE OCT 22nd
+Design on paper CPU, figure out modules required - 2 hours - DUE OCT 24th
+Write instruction modules and respective test benches in verilog - 5 hours total - DUE OCT 24th
+- LW (load word), SW (store word) - 1 hour
+- J (jump), JR (jump register), JAL (jump and link) - 1 hour
+- BEQ (branch on equal), BNE (branch on not equal) - 1 hour
+- XORI (bitwise exclusive or immediate), SLT (set less than) - 1 hour
+- ADDI (add immediate (with overflow)), ADD (add (with overflow)), SUB (subtract) - 1 hour
+Master Testing Suite-  DUE OCT 24th
+- Runs all modules test bench - 1 hour
+- Debugging - 2 hours
+CPU Synthesis
+- FSM for CPU Controls -3 hours Total - DUE OCT 28th - MIDPOINT
+  - Drawing - 1.5 hours
+  - Verilog - 1.5 hours
+- Schematic - 1 hour  - DUE OCT 28th - MIDPOINT
+- Verilog -2 hours -   DUE OCT 31st
+- Test Bench - 3 hours -  DUE OCT 31st
+- Debugging - 2 hours
+Assembly Code
+- High level testing - 3 hours DUE NOV 1st
+- Report- 3 hours - Due NOV 2nd.
