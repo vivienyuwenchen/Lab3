@@ -105,10 +105,10 @@ module instructionLUT
                 IsJump = 0;
                 IsJAL = 0;
                 IsJR = 0;
-                if ((zero == 0) && (overflow == 0))
-                    IsBranch = 1;
-                else
+                if ((zero == 1) && (overflow == 0))
                     IsBranch = 0;
+                else
+                    IsBranch = 1;
             end
             opXORI: begin
                 RegDst = 0;

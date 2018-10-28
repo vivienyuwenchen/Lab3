@@ -22,3 +22,9 @@ CPU Synthesis
 Assembly Code
 - High level testing - 3 hours DUE NOV 1st
 - Report- 3 hours - Due NOV 2nd.
+
+Obtain good code - 0.25 hours
+Look Up Table 1.25 hours
+- Drawing - 1 hour
+- Verilog - 0.25 hour
+Schematic 4 hours

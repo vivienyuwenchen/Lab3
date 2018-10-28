@@ -55,3 +55,16 @@ module mux32to1by32
     assign out = mux[address];  // Connect the output of the array
 
 endmodule
+
+
+module mux #(parameter width = 32)
+(
+    output              out,
+    input [width-1:0]   in0,
+    input [width-1:0]   in1,
+    input               sel
+);
+
+    assign out = (sel) ? in0 : in1;
+
+endmodule
