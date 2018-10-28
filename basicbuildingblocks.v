@@ -4,7 +4,7 @@
 
 // D flip-flop with parameterized bit width (default: 1-bit)
 // Parameters in Verilog: http://www.asic-world.com/verilog/para_modules1.html
-module dff #( parameter W = 1 )
+module dff #( parameter W = 32 )
 (
     input trigger,
     input enable,
