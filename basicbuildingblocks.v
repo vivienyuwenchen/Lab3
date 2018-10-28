@@ -40,7 +40,7 @@ module jkff1
 endmodule
 
 // Two-input MUX with parameterized bit width (default: 1-bit)
-module mux2 #( parameter W = 1 )
+module mux2 #( parameter W = 32 )
 (
     input[W-1:0]    in0,
     input[W-1:0]    in1,
