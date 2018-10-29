@@ -60,3 +60,14 @@ module tri_buf
 );
     assign b = (enable) ? a : 1'bz;
 endmodule
+
+// Sign Extend
+module signextend
+(
+    input  [15:0] num,
+    output [31:0] result
+);
+
+    assign result = $signed(num);
+
+endmodule
