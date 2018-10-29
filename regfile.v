@@ -7,8 +7,7 @@
 //------------------------------------------------------------------------------
 
 `include "registers.v"
-`include "muxes.v"
-`include "decoders.v"
+`include "basicbuildingblocks.v"
 
 module regfile
 (
