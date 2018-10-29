@@ -78,7 +78,7 @@ module execution
     mux2 #(32) muxshift2(.in0(jumpaddr),
                     .in1(branchaddr),
                     .sel(IsBranch),
-                    .out(shift2)););
+                    .out(shift2));
 
     alu aluadd(.carryout(aluaddcarryout),
                     .zero(aluaddzero),
@@ -91,7 +91,7 @@ module execution
     mux2 #(32) muxisbranch(.in0(PCplus4),
                     .in1(aluaddsum),
                     .sel(IsBranch),
-                    .out(isbranchout)););
+                    .out(isbranchout));
 
     mux2 #(32) muxisjump(.in0(isbranchout),
                     .in1(shift2),
@@ -101,7 +101,7 @@ module execution
     mux2 #(32) muxisjr(.in0(isjumpout),
                     .in1(regDa),
                     .sel(IsJR),
-                    .out(isjrout)););
+                    .out(isjrout));
 
     mux2 #(5) muxregdst(.in0(RT),
                     .in1(RD),
