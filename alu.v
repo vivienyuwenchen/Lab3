@@ -12,8 +12,8 @@
 module didOverflow // calculates overflow of 2 bits
 (
     output overflow,
-    input a, 
-    input b, 
+    input a,
+    input b,
     input s, // most sig bit
     input sub
 );
@@ -38,10 +38,10 @@ endmodule
 
 module AdderAndSubtractor
 (
-    output res, 
+    output res,
     output carryout,
-    input a, 
-    input b, 
+    input a,
+    input b,
     input isSubtract,
     input carryin
 );
@@ -83,7 +83,7 @@ module aluBitSlice
     wire s0inv;
     wire s1inv;
     wire s2inv;
-    
+
     //mapped selections
     wire isAdd;
     wire isSub;
@@ -115,7 +115,7 @@ module aluBitSlice
     `NOT1(s0inv, s0);
     `NOT1(s1inv, s1);
     `NOT1(s2inv, s2);
-     
+
      //ony on of these operations will ever result in a true
     `AND4(isAdd, addSub, s0inv, s1inv, s2inv);
     `AND4(isSub, addSub, s0, s1inv, s2inv);
@@ -132,13 +132,13 @@ module aluBitSlice
 endmodule
 
 module isZero (
-    input[31:0] bit,
+    input[31:0] bitt,
     output out
 );
-//nor all bits, if all are zero a one will be returned if any are not a 0 will be returned. 
+//nor all bits, if all are zero a one will be returned if any are not a 0 will be returned.
 
-`NOR32(out, bit[0], bit[1], bit[2], bit[3], bit[4], bit[5], bit[6], bit[7], bit[8], bit[9], bit[10], bit[11], bit[12], bit[13], bit[14], 
-    bit[15], bit[16], bit[17], bit[18], bit[19], bit[20], bit[21], bit[22], bit[23], bit[24], bit[25], bit[26], bit[27], bit[28], bit[29], bit[30], bit[31]);
+`NOR32(out, bitt[0], bitt[1], bitt[2], bitt[3], bitt[4], bitt[5], bitt[6], bitt[7], bitt[8], bitt[9], bitt[10], bitt[11], bitt[12], bitt[13], bitt[14],
+    bitt[15], bitt[16], bitt[17], bitt[18], bitt[19], bitt[20], bitt[21], bitt[22], bitt[23], bitt[24], bitt[25], bitt[26], bitt[27], bitt[28], bitt[29], bitt[30], bitt[31]);
 
 endmodule // isZero
 
@@ -214,7 +214,7 @@ module alu (
 
     // determines if result is zero
     isZero zeroCalc(
-        .bit (result),
+        .bitt (result),
         .out (zero)
     );
 endmodule

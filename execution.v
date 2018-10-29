@@ -4,15 +4,17 @@
 
 `include "regfile.v"
 `include "datamemory.v"
-`include "basicbuildingblocks.v"
+//`include "basicbuildingblocks.v"
 `include "alu.v"
+`include "instructiondecoder.v"
+`include "lut.v"
 
 module execution
 (
     input 	          clk,
-    input [31:0]      datain,
-    output reg [31:0] regDa,
-    output reg [31:0] regDb
+    input [31:0]      datain//,
+    //output reg [31:0] regDa,
+    //output reg [31:0] regDb
 );
 
     // control wires
@@ -26,7 +28,7 @@ module execution
     // unused wires
     wire aluadd4carryout, aluadd4zero, aluadd4overflow, aluaddcarryout, aluaddzero, aluaddoverflow, carryout;
     // sort later
-    wire [31:0] PCcount, isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, isjrout, mem2regout, alusrcout;
+    wire [31:0] PCcount, isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout;
     wire zero, overflow;
     wire [31:0] regDa, regDb, regDin, regAw, SE, result;
     wire [4:0] Rint;
@@ -73,7 +75,7 @@ module execution
                     .command(3'b000));
 
     assign jumpaddr = {PCplus4[31:28], TA, 2'b00};
-    assign branchaddr = {14{IMM16[15]}, IMM16, 2'b00};
+    assign branchaddr = {{14{IMM16[15]}}, IMM16, 2'b00};
 
     mux2 #(32) muxshift2(.in0(jumpaddr),
                     .in1(branchaddr),
@@ -96,7 +98,7 @@ module execution
     mux2 #(32) muxisjump(.in0(isbranchout),
                     .in1(shift2),
                     .sel(IsJump),
-                    .out(isjumpout)););
+                    .out(isjumpout));
 
     mux2 #(32) muxisjr(.in0(isjumpout),
                     .in1(regDa),
@@ -135,7 +137,7 @@ module execution
                     .operandB(alusrcout),
                     .command(ALUctrl));
 
-    assign SE = {16{IMM16[15]}, IMM16};
+    assign SE = {{16{IMM16[15]}}, IMM16};
 
     mux2 #(32) muxalusrc(.in0(regDb),
                     .in1(SE),

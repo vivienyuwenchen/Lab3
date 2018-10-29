@@ -45,16 +45,16 @@ module decoder1to32
 endmodule
 
 // 32 to 1 multiplexer with 1 bit output
-module mux32to1by1
-(
-    output        out,
-    input [4:0]   address,
-    input [31:0]  inputs
-);
-
-    assign out = inputs[address];
-
-endmodule
+// module mux32to1by1
+// (
+//     output        out,
+//     input [4:0]   address,
+//     input [31:0]  inputs
+// );
+// 
+//     assign out = inputs[address];
+//
+// endmodule
 
 // 32 to 1 multiplexer with 32 bit output
 module mux32to1by32
