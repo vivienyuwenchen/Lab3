@@ -18,15 +18,15 @@
 
 module instructionLUT
 (
-    input 	    OP,
-    input       FUNCT,
+    input [5:0] OP,
+    input [5:0] FUNCT,
     input       zero,
     input       overflow,
     output reg  RegDst,
     output reg  RegWr,
     output reg  MemWr,
     output reg  MemToReg,
-    output reg  ALUctrl,
+    output reg [3:0] ALUctrl,
     output reg  ALUsrc,
     output reg  IsJump,
     output reg  IsJAL,
@@ -138,56 +138,58 @@ module instructionLUT
                 IsBranch = 0;
             end
             Rtype: begin
-                case(FUNCT)
-                    opJR: begin
-                        RegDst = 0;
-                        RegWr = 0;
-                        MemWr = 0;
-                        MemToReg = 0;
-                        ALUcntrl = 000;
-                        ALUsrc = 0;
-                        IsJump = 0;
-                        IsJAL = 0;
-                        IsJR = 1;
-                        IsBranch = 0;
-                    end
-                    opADD: begin
-                        RegDst = 1;
-                        RegWr = 1;
-                        MemWr = 0;
-                        MemToReg = 0;
-                        ALUcntrl = 000;
-                        ALUsrc = 0;
-                        IsJump = 0;
-                        IsJAL = 0;
-                        IsJR = 0;
-                        IsBranch = 0;
-                    end
-                    opSUB: begin
-                        RegDst = 1;
-                        RegWr = 1;
-                        MemWr = 0;
-                        MemToReg = 0;
-                        ALUcntrl = 001;
-                        ALUsrc = 0;
-                        IsJump = 0;
-                        IsJAL = 0;
-                        IsJR = 0;
-                        IsBranch = 0;
-                    end
-                    opSLT: begin
-                        RegDst = 1;
-                        RegWr = 1;
-                        MemWr = 0;
-                        MemToReg = 0;
-                        ALUcntrl = 011;
-                        ALUsrc = 0;
-                        IsJump = 0;
-                        IsJAL = 0;
-                        IsJR = 0;
-                        IsBranch = 0;
-                    end
-                endcase
+                always @(FUNCT begin)
+                    case(FUNCT)
+                        opJR: begin
+                            RegDst = 0;
+                            RegWr = 0;
+                            MemWr = 0;
+                            MemToReg = 0;
+                            ALUcntrl = 000;
+                            ALUsrc = 0;
+                            IsJump = 0;
+                            IsJAL = 0;
+                            IsJR = 1;
+                            IsBranch = 0;
+                        end
+                        opADD: begin
+                            RegDst = 1;
+                            RegWr = 1;
+                            MemWr = 0;
+                            MemToReg = 0;
+                            ALUcntrl = 000;
+                            ALUsrc = 0;
+                            IsJump = 0;
+                            IsJAL = 0;
+                            IsJR = 0;
+                            IsBranch = 0;
+                        end
+                        opSUB: begin
+                            RegDst = 1;
+                            RegWr = 1;
+                            MemWr = 0;
+                            MemToReg = 0;
+                            ALUcntrl = 001;
+                            ALUsrc = 0;
+                            IsJump = 0;
+                            IsJAL = 0;
+                            IsJR = 0;
+                            IsBranch = 0;
+                        end
+                        opSLT: begin
+                            RegDst = 1;
+                            RegWr = 1;
+                            MemWr = 0;
+                            MemToReg = 0;
+                            ALUcntrl = 011;
+                            ALUsrc = 0;
+                            IsJump = 0;
+                            IsJAL = 0;
+                            IsJR = 0;
+                            IsBranch = 0;
+                        end
+                    endcase
+                end
             end
         endcase
     end
