@@ -72,9 +72,13 @@ module execution
                     .operandB(32'h00000004),
                     .command(3'b000));
 
-    // assign PC4TA = {PCplus4[31:28], TA};    // sign extend?
-    // assign shift2 = PC4TA<<2'b00;
-    assign shift2 = {PCplus4[31:28], TA, 2'b00};
+    assign jumpaddr = {PCplus4[31:28], TA, 2'b00};
+    assign branchaddr = {14{IMM16[15]}, IMM16, 2'b00};
+
+    mux2 #(32) muxshift2(.in0(jumpaddr),
+                    .in1(branchaddr),
+                    .sel(IsBranch),
+                    .out(shift2)););
 
     alu aluadd(.carryout(aluaddcarryout),
                     .zero(aluaddzero),
@@ -131,8 +135,7 @@ module execution
                     .operandB(alusrcout),
                     .command(ALUctrl));
 
-    signextend se(.num(IMM16),
-                    .result(SE));
+    assign SE = {16{IMM16[15]}, IMM16};
 
     mux2 #(32) muxalusrc(.in0(regDb),
                     .in1(SE),

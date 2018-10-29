@@ -18,27 +18,6 @@ module dff #( parameter W = 32 )
     end
 endmodule
 
-// JK flip-flop
-module jkff1
-(
-    input trigger,
-    input j,
-    input k,
-    output reg q
-);
-    always @(posedge trigger) begin
-        if(j && ~k) begin
-            q <= 1'b1;
-        end
-        else if(k && ~j) begin
-            q <= 1'b0;
-        end
-        else if(k && j) begin
-            q <= ~q;
-        end
-    end
-endmodule
-
 // Two-input MUX with parameterized bit width (default: 1-bit)
 module mux2 #( parameter W = 32 )
 (
@@ -49,25 +28,4 @@ module mux2 #( parameter W = 32 )
 );
     // Conditional operator - http://www.verilog.renerta.com/source/vrg00010.htm
     assign out = (sel) ? in1 : in0;
-endmodule
-
-// Tri-state buffer
-module tri_buf
-(
-    input   a,
-    output  b,
-    input   enable
-);
-    assign b = (enable) ? a : 1'bz;
-endmodule
-
-// Sign Extend
-module signextend
-(
-    input  [15:0] num,
-    output [31:0] result
-);
-
-    assign result = $signed(num);
-
 endmodule
