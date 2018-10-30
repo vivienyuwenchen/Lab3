@@ -26,7 +26,7 @@ module instructionLUT
     output reg  RegWr,
     output reg  MemWr,
     output reg  MemToReg,
-    output reg [3:0] ALUctrl,
+    output reg [2:0] ALUctrl,
     output reg  ALUsrc,
     output reg  IsJump,
     output reg  IsJAL,

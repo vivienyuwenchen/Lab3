@@ -30,8 +30,10 @@ module execution
     // sort later
     wire [31:0] PCcount, isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout;
     wire zero, overflow;
-    wire [31:0] regDa, regDb, regDin, regAw, SE, result;
-    wire [4:0] Rint;
+    wire [31:0] regDa, regDb, regDin, SE, result;
+    wire [4:0] Rint, regAw;
+    wire [31:0] jumpaddr, branchaddr;
+    wire [31:0] memout;
 
     instructiondecoder decoder(.OP(OP),
                     .RT(RT),
@@ -109,7 +111,7 @@ module execution
                     .in1(RD),
                     .sel(RegDst),
                     .out(Rint));
-
+                    
     mux2 #(5) muxixjalaw(.in0(Rint),
                     .in1(5'd31),
                     .sel(IsJAL),
@@ -126,7 +128,7 @@ module execution
                     .ReadRegister1(RS),
                     .ReadRegister2(RT),
                     .WriteRegister(regAw),
-                    .RegWrite(WrEn),
+                    .RegWrite(RegWr),
                     .Clk(clk));
 
     alu alumain(.carryout(carryout),
@@ -145,13 +147,13 @@ module execution
                     .out(alusrcout));
 
     datamemory #(32,32,32) datamem(.clk(clk),
-                    .dataOut(MemOut),
+                    .dataOut(memout),
                     .address(result),
                     .writeEnable(MemWr),
                     .dataIn(regDb));
 
     mux2 #(32) muxmem2reg(.in0(result),
-                    .in1(MemOut),
+                    .in1(memout),
                     .sel(MemToReg),
                     .out(mem2regout));
 

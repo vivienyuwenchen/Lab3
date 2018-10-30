@@ -10,7 +10,8 @@ module instructiondecoder
     output  [5:0]       FUNCT,  // the 5:0 bit of the R type instruction
     input  [31:0]    readAddress,  // the 32 bit address from the Program Counter
     input           RegWrite,       // Enable writing of register when High
-    input           Clk, DataIn            // Clock (Positive Edge Triggered)
+    input           Clk,   // Clock (Positive Edge Triggered)
+    input   [31:0] DataIn
 );
 
   wire [31:0] instructions;
@@ -20,7 +21,7 @@ module instructiondecoder
   assign RT = instructions[20:16];
   assign RS = instructions[25:21];
   assign RD = instructions[15:11];
-  assign imm16 = instructions[15:0];
+  assign IMM16 = instructions[15:0];
   assign TA = instructions[25:0];
   assign SHAMT = instructions[10:6];
   assign FUNCT = instructions[5:0];
@@ -43,7 +44,7 @@ module memory
     end
   end
 
-  initial $readmemh(“file.dat”, mem);
+  //initial $readmemh(“file.dat”, mem);
 
   assign DataOut = mem[Addr];
 endmodule
