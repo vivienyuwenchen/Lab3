@@ -34,61 +34,62 @@ module instructionLUT
     output reg  IsBranch
 );
 
-    always @(OP) begin
+    always @(OP or FUNCT or zero or overflow) begin
         case(OP)
-            opLW: begin
+            `opLW: begin
                 RegDst = 0;
                 RegWr = 1;
                 MemWr = 0;
                 MemToReg = 1;
-                ALUcntrl = 000;
+                ALUctrl = 3'b000;
                 ALUsrc = 1;
                 IsJump = 0;
                 IsJAL = 0;
                 IsJR = 0;
                 IsBranch = 0;
             end
-            opSW: begin
+            `opSW: begin
                 RegDst = 0;
                 RegWr = 0;
                 MemWr = 1;
                 MemToReg = 0;
-                ALUcntrl = 000;
+                ALUctrl = 3'b000;
                 ALUsrc = 1;
                 IsJump = 0;
                 IsJAL = 0;
                 IsJR = 0;
                 IsBranch = 0;
             end
-            opJ: begin
+            `opJ: begin
                 RegDst = 0;
                 RegWr = 0;
                 MemWr = 0;
                 MemToReg = 0;
-                ALUcntrl = 000;
+                ALUctrl = 3'b000;
                 ALUsrc = 0;
                 IsJump = 1;
                 IsJAL = 0;
                 IsJR = 0;
+                IsBranch = 0;
             end
-            opJAL: begin
+            `opJAL: begin
                 RegDst = 0;
                 RegWr = 1;
                 MemWr = 0;
                 MemToReg = 0;
-                ALUcntrl = 000;
+                ALUctrl = 3'b000;
                 ALUsrc = 0;
                 IsJump = 1;
-                IsJAL = 0;
-                IsJR = 1;
+                IsJAL = 1;
+                IsJR = 0;
                 IsBranch = 0;
             end
-            opBEQ: begin
+            `opBEQ: begin
                 RegDst = 0;
                 RegWr = 0;
                 MemWr = 0;
                 MemToReg = 0;
-                ALUcntrl = 001;
+                ALUctrl = 3'b001;
                 ALUsrc = 0;
                 IsJump = 0;
                 IsJAL = 0;
@@ -98,12 +99,12 @@ module instructionLUT
                 else
                     IsBranch = 0;
             end
-            opBNE: begin
+            `opBNE: begin
                 RegDst = 0;
                 RegWr = 0;
                 MemWr = 0;
                 MemToReg = 0;
-                ALUcntrl = 001;
+                ALUctrl = 3'b001;
                 ALUsrc = 0;
                 IsJump = 0;
                 IsJAL = 0;
@@ -113,83 +114,81 @@ module instructionLUT
                 else
                     IsBranch = 1;
             end
-            opXORI: begin
+            `opXORI: begin
                 RegDst = 0;
                 RegWr = 1;
                 MemWr = 0;
                 MemToReg = 0;
-                ALUcntrl = 010;
+                ALUctrl = 3'b010;
                 ALUsrc = 1;
                 IsJump = 0;
                 IsJAL = 0;
                 IsJR = 0;
                 IsBranch = 0;
             end
-            opADDI: begin
+            `opADDI: begin
                 RegDst = 0;
                 RegWr = 1;
                 MemWr = 0;
                 MemToReg = 0;
-                ALUcntrl = 000;
+                ALUctrl = 3'b000;
                 ALUsrc = 1;
                 IsJump = 0;
                 IsJAL = 0;
                 IsJR = 0;
                 IsBranch = 0;
             end
-            Rtype: begin
-                always @(FUNCT begin)
-                    case(FUNCT)
-                        opJR: begin
-                            RegDst = 0;
-                            RegWr = 0;
-                            MemWr = 0;
-                            MemToReg = 0;
-                            ALUcntrl = 000;
-                            ALUsrc = 0;
-                            IsJump = 0;
-                            IsJAL = 0;
-                            IsJR = 1;
-                            IsBranch = 0;
-                        end
-                        opADD: begin
-                            RegDst = 1;
-                            RegWr = 1;
-                            MemWr = 0;
-                            MemToReg = 0;
-                            ALUcntrl = 000;
-                            ALUsrc = 0;
-                            IsJump = 0;
-                            IsJAL = 0;
-                            IsJR = 0;
-                            IsBranch = 0;
-                        end
-                        opSUB: begin
-                            RegDst = 1;
-                            RegWr = 1;
-                            MemWr = 0;
-                            MemToReg = 0;
-                            ALUcntrl = 001;
-                            ALUsrc = 0;
-                            IsJump = 0;
-                            IsJAL = 0;
-                            IsJR = 0;
-                            IsBranch = 0;
-                        end
-                        opSLT: begin
-                            RegDst = 1;
-                            RegWr = 1;
-                            MemWr = 0;
-                            MemToReg = 0;
-                            ALUcntrl = 011;
-                            ALUsrc = 0;
-                            IsJump = 0;
-                            IsJAL = 0;
-                            IsJR = 0;
-                            IsBranch = 0;
-                        end
-                    endcase
-                end
+            `Rtype: begin
+                case(FUNCT)
+                    `opJR: begin
+                        RegDst = 0;
+                        RegWr = 0;
+                        MemWr = 0;
+                        MemToReg = 0;
+                        ALUctrl = 3'b000;
+                        ALUsrc = 0;
+                        IsJump = 0;
+                        IsJAL = 0;
+                        IsJR = 1;
+                        IsBranch = 0;
+                    end
+                    `opADD: begin
+                        RegDst = 1;
+                        RegWr = 1;
+                        MemWr = 0;
+                        MemToReg = 0;
+                        ALUctrl = 3'b000;
+                        ALUsrc = 0;
+                        IsJump = 0;
+                        IsJAL = 0;
+                        IsJR = 0;
+                        IsBranch = 0;
+                    end
+                    `opSUB: begin
+                        RegDst = 1;
+                        RegWr = 1;
+                        MemWr = 0;
+                        MemToReg = 0;
+                        ALUctrl = 3'b001;
+                        ALUsrc = 0;
+                        IsJump = 0;
+                        IsJAL = 0;
+                        IsJR = 0;
+                        IsBranch = 0;
+                    end
+                    `opSLT: begin
+                        RegDst = 1;
+                        RegWr = 1;
+                        MemWr = 0;
+                        MemToReg = 0;
+                        ALUctrl = 3'b011;
+                        ALUsrc = 0;
+                        IsJump = 0;
+                        IsJAL = 0;
+                        IsJR = 0;
+                        IsBranch = 0;
+                    end
+                endcase
             end
         endcase
     end
