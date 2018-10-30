@@ -8,13 +8,9 @@ module testlut();
 
     reg  [5:0]  OP, FUNCT;
     reg         zero, overflow;
-    wire
-    wire [7:0]  ALUctrl;
-    wire            serialDataOut;
-    reg[7:0]        parallelDataIn;
-    reg             serialDataIn;
+    wire        RegDst, RegWr, MemWr, MemToReg, ALUsrc, IsJump, IsJAL, IsJR, IsBranch;
+    wire [3:0]  ALUctrl;
 
-    // Instantiate with parameter width = 8
     instructionLUT lut(.OP(OP),
                     .FUNCT(FUNCT),
                     .zero(zero),
@@ -33,38 +29,64 @@ module testlut();
     // Generate clock (50MHz)
     initial clk=0;
     always #10 clk=!clk;    // 50MHz Clock
+
     initial begin
         $display("I am working :)");
-        // Test 1: Testing parallel load
-        parallelDataIn=8'b10001010; serialDataIn=1; peripheralClkEdge=0; parallelLoad=1; #50
-        if(parallelDataOut != 8'b10001010)
-            $display("error in test #1 (parallelDataOut) Expected: 10001010) Got: %d", parallelDataOut);
-        if(serialDataOut != 1)
-            $display("error in test #1 (serialDataOut) Expected: 1 Got: %d", serialDataOut);
-        // Test 2: Testing Peripheral clk edge
-        parallelDataIn=8'b10001010; serialDataIn=1; peripheralClkEdge=1; parallelLoad=0; #50
-        if(parallelDataOut != 8'b00010101)
-            $display("error in test #2 (parallelDataOut) Expected: 00010101) Got: %d", parallelDataOut);
-        if(serialDataOut != 0)
-            $display("error in test #2 (serialDataOut) Expected: 0 Got: %d", serialDataOut);
-        // Test 3: There is different parellel data in but we are not loading and are clocking.
-        parallelDataIn=8'b00010101; serialDataIn=0; peripheralClkEdge=1; parallelLoad=0; #50
-        if(parallelDataOut != 8'b00101010)
-            $display("error in test #3 (parallelDataOut) Expected: 10011010) Got: %d", parallelDataOut);
-        if(serialDataOut != 0)
-            $display("error in test #3 (serialDataOut) Expected: 1 Got: %d", serialDataOut);
-        // Test 4: Clock edge and Parallel Load are both high
-        parallelDataIn=8'b00010110; serialDataIn=0; peripheralClkEdge=1; parallelLoad=1; #50
-        if(parallelDataOut != 8'b00010110)
-            $display("error in test #4 (parallelDataOut) Expected: 00010110) Got: %d", parallelDataOut);
-        if(serialDataOut != 0)
-            $display("error in test #4 (serialDataOut) Expected: 0 Got: %d", serialDataOut);
-        // Test 5: Clock edge and Parallel Load are both low
-        parallelDataIn=8'b00010110; serialDataIn=0; peripheralClkEdge=0; parallelLoad=0; #50
-        if(parallelDataOut != 8'b00010110)
-            $display("error in test #5 (parallelDataOut) Expected: 00010110) Got: %d", parallelDataOut);
-        if(serialDataOut != 0)
-            $display("error in test #5 (serialDataOut) Expected: 0 Got: %d", serialDataOut);
-        $finish();
+        // Test 1: Load Word
+        OP=6'b100011; FUNCT='bx; zero='bx; overflow='bx; #50
+        if(RegDst != 1'b0)
+            $display("error with LW RegDst; Expected: 0, Got: %d", RegDst);
+        if(RegWr != 1'b1)
+            $display("error with LW RegWr; Expected: 1, Got: %d", RegWr);
+        if(MemWr != 1'b0)
+            $display("error with LW MemWr; Expected: 0, Got: %d", MemWr);
+        if(MemToReg != 1'b1)
+            $display("error with LW MemToReg; Expected: 1, Got: %d", MemToReg);
+        if(ALUcntrl != 3'b000)
+            $display("error with LW ALUcntrl; Expected: 000, Got: %d", ALUcntrl);
+        if(ALUsrc != 1'b1)
+            $display("error with LW ALUsrc; Expected: 1, Got: %d", ALUsrc);
+        if(IsJump != 1'b0)
+            $display("error with LW IsJump; Expected: 0, Got: %d", IsJump);
+        if(IsJAL != 1'b0)
+            $display("error with LW IsJAL; Expected: 0, Got: %d", IsJAL);
+        if(IsJR != 1'b0)
+            $display("error with LW IsJR; Expected: 0, Got: %d", IsJR);
+        if(IsBranch != 1'b0)
+            $display("error with LW IsBranch; Expected: 0, Got: %d", IsBranch);
+
+        // Test 2: Store Word
+
+
+        // Test 3: Jump
+
+
+        // Test 4: Jump Register
+
+
+        // Test 5: Jump and Link
+
+
+        // Test 6: Branch on Equal
+
+
+        // Test 7: Branch on Not Equal
+
+
+        // Test 8: Exclusive OR with Immediate
+
+
+        // Test 9: Add with Immediate
+
+
+        // Test 10: Add
+
+
+        // Test 11: Subtract
+
+
+        // Test 12: Set Less Than
+
+        
     end
 endmodule
