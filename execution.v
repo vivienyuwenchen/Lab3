@@ -4,7 +4,7 @@
 
 `include "regfile.v"
 `include "datamemory.v"
-//`include "basicbuildingblocks.v"
+`include "basicbuildingblocks.v"
 `include "alu.v"
 `include "instructiondecoder.v"
 `include "lut.v"
