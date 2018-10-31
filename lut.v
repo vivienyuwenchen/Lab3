@@ -187,9 +187,15 @@ module instructionLUT
                         IsJAL = 0;
                         IsJR = 0;
                         IsBranch = 0;
+                    end // opSLT
+                    default: begin
+                        $display("ERROR: Invalid operation or function code.");
                     end
-                endcase
+                endcase // case(FUNCT)
+            end // Rtype
+            default: begin
+                $display("ERROR: Invalid operation or function code.");
             end
-        endcase
-    end
+        endcase // case(OP)
+    end // always
 endmodule

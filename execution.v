@@ -11,8 +11,8 @@
 
 module execution
 (
-    input 	          clk,
-    input [31:0]      datain//,
+    input 	          clk
+  //,
     //output reg [31:0] regDa,
     //output reg [31:0] regDb
 );
@@ -20,6 +20,7 @@ module execution
     // control wires
     wire RegDst, RegWr, MemWr, MemToReg, ALUsrc, IsJump, IsJAL, IsJR, IsBranch;
     wire [2:0] ALUctrl;
+    wire [31:0]      datain;
     // decoder wires
     wire [5:0] OP, FUNCT;
     wire [4:0] RT, RS, RD, SHAMT;
@@ -28,7 +29,7 @@ module execution
     // unused wires
     wire aluadd4carryout, aluadd4zero, aluadd4overflow, aluaddcarryout, aluaddzero, aluaddoverflow, carryout;
     // sort later
-    wire [31:0] PCcount, isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout;
+    wire [31:0] PCcount, isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout, INSTRUCT;
     wire zero, overflow;
     wire [31:0] regDa, regDb, regDin, SE, result;
     wire [4:0] Rint, regAw;
@@ -43,6 +44,7 @@ module execution
                     .TA(TA),
                     .SHAMT(SHAMT),
                     .FUNCT(FUNCT),
+                    .INSTRUCT(INSTRUCT),
                     .readAddress(PCcount),
                     .RegWrite(RegWr),
                     .Clk(clk),
@@ -111,7 +113,7 @@ module execution
                     .in1(RD),
                     .sel(RegDst),
                     .out(Rint));
-                    
+
     mux2 #(5) muxixjalaw(.in0(Rint),
                     .in1(5'd31),
                     .sel(IsJAL),
