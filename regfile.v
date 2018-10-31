@@ -6,7 +6,6 @@
 //   1 synchronous, positive edge triggered write port
 //------------------------------------------------------------------------------
 
-`include "registers.v"
 `include "basicbuildingblocks.v"
 
 module regfile
@@ -45,5 +44,40 @@ module regfile
         RegisterOutput[16], RegisterOutput[17], RegisterOutput[18], RegisterOutput[19], RegisterOutput[20], RegisterOutput[21],
         RegisterOutput[22], RegisterOutput[23], RegisterOutput[24], RegisterOutput[25], RegisterOutput[26], RegisterOutput[27],
         RegisterOutput[28], RegisterOutput[29], RegisterOutput[30], RegisterOutput[31]);
+
+endmodule
+
+//------------------------------------------------------------------------------
+// Support Modules
+//------------------------------------------------------------------------------
+module register32 #(parameter W = 32)
+(
+    output reg [W-1:0]  q,
+    input      [W-1:0]  d,
+    input               wrenable,
+    input               clk
+);
+
+    always @(posedge clk) begin
+        if(wrenable) begin
+            q <= d;
+        end
+    end
+
+endmodule
+
+
+module register32zero #(parameter W = 32)
+(
+    output reg [W-1:0]  q,
+    input               wrenable,
+    input               clk
+);
+
+    always @(posedge clk) begin
+        if(wrenable) begin
+            q <= 32'd0;;
+        end
+    end
 
 endmodule
