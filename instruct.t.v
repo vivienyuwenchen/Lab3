@@ -9,6 +9,7 @@ module instructiontest();
     reg [31:0] PCcount;
     wire [31:0] INSTRUCT;
     wire RegWr, clk;
+    reg [31:0] test1;
 
     instructiondecoder decoder(.OP(OP),
                     .RT(RT),
@@ -33,14 +34,14 @@ module instructiontest();
 //             $display("Intruction: Expected: 00000000, Got: %d", INSTRUCT);
 //     end
 // endmodule
+    test1 = 32'h1000_0001;
 
-
-    PCcount = 0;
-    if (INSTRUCT == 32'h1000_0001) begin
-        $display("Test 1 Passed");
+    PCcount = 0; #1000
+    if (INSTRUCT == 32'h1000_0001 && RT == test1[20:16]) begin
+        $display("Test 1 Passed Instuct: %b RT: %b  test1: %b", INSTRUCT, RT, test1);
     end
     else begin
-        $display("Test 1 Failed");
+        $display("Test 1 Failed Instruct: %b RT: %b  test1: %b",INSTRUCT, RT, test1);
     end
 
     PCcount = 1;

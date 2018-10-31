@@ -29,12 +29,13 @@ module execution
     // unused wires
     wire aluadd4carryout, aluadd4zero, aluadd4overflow, aluaddcarryout, aluaddzero, aluaddoverflow, carryout;
     // sort later
-    wire [31:0] PCcount, isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout, INSTRUCT;
+    wire [31:0] isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout, INSTRUCT;
     wire zero, overflow;
     wire [31:0] regDa, regDb, regDin, SE, result;
     wire [4:0] Rint, regAw;
-    wire [31:0] jumpaddr, branchaddr;
+    wire [31:0] PCcount, jumpaddr, branchaddr;
     wire [31:0] memout;
+
 
     instructiondecoder decoder(.OP(OP),
                     .RT(RT),

@@ -6,25 +6,26 @@
 :vpi_module "vhdl_sys";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_0x127b6f0 .scope module, "instructiontest" "instructiontest" 2 2;
+S_0x18688f0 .scope module, "instructiontest" "instructiontest" 2 2;
  .timescale 0 0;
-v0x12aa190_0 .net "FUNCT", 5 0, L_0x12ab5f0;  1 drivers
-v0x12aa2a0_0 .net "IMM16", 15 0, L_0x12ab260;  1 drivers
-v0x12aa370_0 .net "INSTRUCT", 31 0, L_0x12ab730;  1 drivers
-v0x12aa470_0 .net "OP", 5 0, L_0x12aae40;  1 drivers
-v0x12aa540_0 .var "PCcount", 31 0;
-v0x12aa630_0 .net "RD", 4 0, L_0x12ab170;  1 drivers
-v0x12aa6d0_0 .net "RS", 4 0, L_0x12ab0d0;  1 drivers
-v0x12aa770_0 .net "RT", 4 0, L_0x12aaf50;  1 drivers
-o0x7f2550c67108 .functor BUFZ 1, C4<z>; HiZ drive
-v0x12aa840_0 .net "RegWr", 0 0, o0x7f2550c67108;  0 drivers
-v0x12aa970_0 .net "SHAMT", 4 0, L_0x12ab550;  1 drivers
-v0x12aaa10_0 .net "TA", 25 0, L_0x12ab350;  1 drivers
-o0x7f2550c670d8 .functor BUFZ 1, C4<z>; HiZ drive
-v0x12aaae0_0 .net "clk", 0 0, o0x7f2550c670d8;  0 drivers
-o0x7f2550c67048 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
-v0x12aabd0_0 .net "datain", 31 0, o0x7f2550c67048;  0 drivers
-S_0x1278910 .scope module, "decoder" "instructiondecoder" 2 13, 3 2 0, S_0x127b6f0;
+v0x1898d10_0 .net "FUNCT", 5 0, L_0x189a250;  1 drivers
+v0x1898e20_0 .net "IMM16", 15 0, L_0x1899ec0;  1 drivers
+v0x1898ef0_0 .net "INSTRUCT", 31 0, L_0x189a390;  1 drivers
+v0x1898ff0_0 .net "OP", 5 0, L_0x1899aa0;  1 drivers
+v0x18990c0_0 .var "PCcount", 31 0;
+v0x18991b0_0 .net "RD", 4 0, L_0x1899dd0;  1 drivers
+v0x1899250_0 .net "RS", 4 0, L_0x1899d30;  1 drivers
+v0x18992f0_0 .net "RT", 4 0, L_0x1899bb0;  1 drivers
+o0x7f903e1e8108 .functor BUFZ 1, C4<z>; HiZ drive
+v0x18993c0_0 .net "RegWr", 0 0, o0x7f903e1e8108;  0 drivers
+v0x18994f0_0 .net "SHAMT", 4 0, L_0x189a1b0;  1 drivers
+v0x1899590_0 .net "TA", 25 0, L_0x1899fb0;  1 drivers
+o0x7f903e1e80d8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x1899660_0 .net "clk", 0 0, o0x7f903e1e80d8;  0 drivers
+o0x7f903e1e8048 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1899750_0 .net "datain", 31 0, o0x7f903e1e8048;  0 drivers
+v0x1899840_0 .var "test1", 31 0;
+S_0x1865b10 .scope module, "decoder" "instructiondecoder" 2 14, 3 2 0, S_0x18688f0;
  .timescale 0 0;
     .port_info 0 /OUTPUT 6 "OP"
     .port_info 1 /OUTPUT 5 "RT"
@@ -39,96 +40,108 @@ S_0x1278910 .scope module, "decoder" "instructiondecoder" 2 13, 3 2 0, S_0x127b6
     .port_info 10 /INPUT 1 "RegWrite"
     .port_info 11 /INPUT 1 "Clk"
     .port_info 12 /INPUT 32 "DataIn"
-L_0x12ab730 .functor BUFZ 32, L_0x12537f0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
-v0x12a9320_0 .net "Clk", 0 0, o0x7f2550c670d8;  alias, 0 drivers
-v0x12a93e0_0 .net "DataIn", 31 0, o0x7f2550c67048;  alias, 0 drivers
-v0x12a94b0_0 .net "FUNCT", 5 0, L_0x12ab5f0;  alias, 1 drivers
-v0x12a9580_0 .net "IMM16", 15 0, L_0x12ab260;  alias, 1 drivers
-v0x12a9660_0 .net "INSTRUCT", 31 0, L_0x12ab730;  alias, 1 drivers
-v0x12a9790_0 .net "OP", 5 0, L_0x12aae40;  alias, 1 drivers
-v0x12a9870_0 .net "RD", 4 0, L_0x12ab170;  alias, 1 drivers
-v0x12a9950_0 .net "RS", 4 0, L_0x12ab0d0;  alias, 1 drivers
-v0x12a9a30_0 .net "RT", 4 0, L_0x12aaf50;  alias, 1 drivers
-v0x12a9ba0_0 .net "RegWrite", 0 0, o0x7f2550c67108;  alias, 0 drivers
-v0x12a9c40_0 .net "SHAMT", 4 0, L_0x12ab550;  alias, 1 drivers
-v0x12a9d00_0 .net "TA", 25 0, L_0x12ab350;  alias, 1 drivers
-v0x12a9de0_0 .net "instructions", 31 0, L_0x12537f0;  1 drivers
-v0x12a9ed0_0 .net "readAddress", 31 0, v0x12aa540_0;  1 drivers
-L_0x12aae40 .part L_0x12537f0, 26, 6;
-L_0x12aaf50 .part L_0x12537f0, 16, 5;
-L_0x12ab0d0 .part L_0x12537f0, 21, 5;
-L_0x12ab170 .part L_0x12537f0, 11, 5;
-L_0x12ab260 .part L_0x12537f0, 0, 16;
-L_0x12ab350 .part L_0x12537f0, 0, 26;
-L_0x12ab550 .part L_0x12537f0, 6, 5;
-L_0x12ab5f0 .part L_0x12537f0, 0, 6;
-S_0x127b3b0 .scope module, "instructionMem" "memory_test" 3 21, 4 1 0, S_0x1278910;
+L_0x189a390 .functor BUFZ 32, L_0x1866830, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x1897ea0_0 .net "Clk", 0 0, o0x7f903e1e80d8;  alias, 0 drivers
+v0x1897f60_0 .net "DataIn", 31 0, o0x7f903e1e8048;  alias, 0 drivers
+v0x1898030_0 .net "FUNCT", 5 0, L_0x189a250;  alias, 1 drivers
+v0x1898100_0 .net "IMM16", 15 0, L_0x1899ec0;  alias, 1 drivers
+v0x18981e0_0 .net "INSTRUCT", 31 0, L_0x189a390;  alias, 1 drivers
+v0x1898310_0 .net "OP", 5 0, L_0x1899aa0;  alias, 1 drivers
+v0x18983f0_0 .net "RD", 4 0, L_0x1899dd0;  alias, 1 drivers
+v0x18984d0_0 .net "RS", 4 0, L_0x1899d30;  alias, 1 drivers
+v0x18985b0_0 .net "RT", 4 0, L_0x1899bb0;  alias, 1 drivers
+v0x1898720_0 .net "RegWrite", 0 0, o0x7f903e1e8108;  alias, 0 drivers
+v0x18987c0_0 .net "SHAMT", 4 0, L_0x189a1b0;  alias, 1 drivers
+v0x1898880_0 .net "TA", 25 0, L_0x1899fb0;  alias, 1 drivers
+v0x1898960_0 .net "instructions", 31 0, L_0x1866830;  1 drivers
+v0x1898a50_0 .net "readAddress", 31 0, v0x18990c0_0;  1 drivers
+L_0x1899aa0 .part L_0x1866830, 26, 6;
+L_0x1899bb0 .part L_0x1866830, 16, 5;
+L_0x1899d30 .part L_0x1866830, 21, 5;
+L_0x1899dd0 .part L_0x1866830, 11, 5;
+L_0x1899ec0 .part L_0x1866830, 0, 16;
+L_0x1899fb0 .part L_0x1866830, 0, 26;
+L_0x189a1b0 .part L_0x1866830, 6, 5;
+L_0x189a250 .part L_0x1866830, 0, 6;
+S_0x18685b0 .scope module, "instructionMem" "memory_test" 3 21, 4 1 0, S_0x1865b10;
  .timescale 0 0;
     .port_info 0 /INPUT 1 "clk"
     .port_info 1 /INPUT 1 "regWE"
     .port_info 2 /INPUT 32 "Addr"
     .port_info 3 /INPUT 32 "DataIn"
     .port_info 4 /OUTPUT 32 "DataOut"
-L_0x12537f0 .functor BUFZ 32, L_0x12aacc0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
-v0x12796b0_0 .net "Addr", 31 0, v0x12aa540_0;  alias, 1 drivers
-v0x12a8d40_0 .net "DataIn", 31 0, o0x7f2550c67048;  alias, 0 drivers
-v0x12a8e20_0 .net "DataOut", 31 0, L_0x12537f0;  alias, 1 drivers
-v0x12a8f10_0 .net *"_s0", 31 0, L_0x12aacc0;  1 drivers
-v0x12a8ff0_0 .net "clk", 0 0, o0x7f2550c670d8;  alias, 0 drivers
-v0x12a9100 .array "mem", 0 1023, 31 0;
-v0x12a91c0_0 .net "regWE", 0 0, o0x7f2550c67108;  alias, 0 drivers
-E_0x1289980 .event posedge, v0x12a8ff0_0;
-L_0x12aacc0 .array/port v0x12a9100, v0x12aa540_0;
-    .scope S_0x127b3b0;
+L_0x1866830 .functor BUFZ 32, L_0x1899920, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x1867530_0 .net "Addr", 31 0, v0x18990c0_0;  alias, 1 drivers
+v0x18978c0_0 .net "DataIn", 31 0, o0x7f903e1e8048;  alias, 0 drivers
+v0x18979a0_0 .net "DataOut", 31 0, L_0x1866830;  alias, 1 drivers
+v0x1897a90_0 .net *"_s0", 31 0, L_0x1899920;  1 drivers
+v0x1897b70_0 .net "clk", 0 0, o0x7f903e1e80d8;  alias, 0 drivers
+v0x1897c80 .array "mem", 0 1023, 31 0;
+v0x1897d40_0 .net "regWE", 0 0, o0x7f903e1e8108;  alias, 0 drivers
+E_0x1867650 .event posedge, v0x1897b70_0;
+L_0x1899920 .array/port v0x1897c80, v0x18990c0_0;
+    .scope S_0x18685b0;
 T_0 ;
-    %wait E_0x1289980;
-    %load/vec4 v0x12a91c0_0;
+    %wait E_0x1867650;
+    %load/vec4 v0x1897d40_0;
     %flag_set/vec4 8;
     %jmp/0xz  T_0.0, 8;
-    %load/vec4 v0x12a8d40_0;
-    %ix/getv 3, v0x12796b0_0;
+    %load/vec4 v0x18978c0_0;
+    %ix/getv 3, v0x1867530_0;
     %ix/load 4, 0, 0; Constant delay
-    %assign/vec4/a/d v0x12a9100, 0, 4;
+    %assign/vec4/a/d v0x1897c80, 0, 4;
 T_0.0 ;
     %jmp T_0;
     .thread T_0;
-    .scope S_0x127b3b0;
+    .scope S_0x18685b0;
 T_1 ;
-    %vpi_call 4 19 "$readmemh", "mem.dat", v0x12a9100 {0 0 0};
+    %vpi_call 4 19 "$readmemh", "mem.dat", v0x1897c80 {0 0 0};
     %end;
     .thread T_1;
-    .scope S_0x127b6f0;
+    .scope S_0x18688f0;
 T_2 ;
-    %vpi_call 2 27 "$display", "Starting instruction test.." {0 0 0};
+    %vpi_call 2 28 "$display", "Starting instruction test.." {0 0 0};
+    %pushi/vec4 268435457, 0, 32;
+    %store/vec4 v0x1899840_0, 0, 32;
     %pushi/vec4 0, 0, 32;
-    %store/vec4 v0x12aa540_0, 0, 32;
-    %load/vec4 v0x12aa370_0;
-    %cmpi/e 268435457, 0, 32;
-    %jmp/0xz  T_2.0, 4;
-    %vpi_call 2 40 "$display", "Test 1 Passed" {0 0 0};
+    %store/vec4 v0x18990c0_0, 0, 32;
+    %delay 1000, 0;
+    %load/vec4 v0x1898ef0_0;
+    %pushi/vec4 268435457, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %load/vec4 v0x18992f0_0;
+    %load/vec4 v0x1899840_0;
+    %parti/s 5, 16, 6;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %vpi_call 2 41 "$display", "Test 1 Passed Instuct: %b RT: %b  test1: %b", v0x1898ef0_0, v0x18992f0_0, v0x1899840_0 {0 0 0};
     %jmp T_2.1;
 T_2.0 ;
-    %vpi_call 2 43 "$display", "Test 1 Failed" {0 0 0};
+    %vpi_call 2 44 "$display", "Test 1 Failed Instruct: %b RT: %b  test1: %b", v0x1898ef0_0, v0x18992f0_0, v0x1899840_0 {0 0 0};
 T_2.1 ;
     %pushi/vec4 1, 0, 32;
-    %store/vec4 v0x12aa540_0, 0, 32;
-    %load/vec4 v0x12aa370_0;
+    %store/vec4 v0x18990c0_0, 0, 32;
+    %load/vec4 v0x1898ef0_0;
     %cmpi/e 268435471, 0, 32;
     %jmp/0xz  T_2.2, 4;
-    %vpi_call 2 48 "$display", "Test 2 Passed" {0 0 0};
+    %vpi_call 2 49 "$display", "Test 2 Passed" {0 0 0};
     %jmp T_2.3;
 T_2.2 ;
-    %vpi_call 2 51 "$display", "Test 2 Failed" {0 0 0};
+    %vpi_call 2 52 "$display", "Test 2 Failed" {0 0 0};
 T_2.3 ;
     %pushi/vec4 2, 0, 32;
-    %store/vec4 v0x12aa540_0, 0, 32;
-    %load/vec4 v0x12aa370_0;
+    %store/vec4 v0x18990c0_0, 0, 32;
+    %load/vec4 v0x1898ef0_0;
     %cmpi/e 0, 0, 32;
     %jmp/0xz  T_2.4, 4;
-    %vpi_call 2 56 "$display", "Test 3 Passed" {0 0 0};
+    %vpi_call 2 57 "$display", "Test 3 Passed" {0 0 0};
     %jmp T_2.5;
 T_2.4 ;
-    %vpi_call 2 59 "$display", "Test 3 Failed" {0 0 0};
+    %vpi_call 2 60 "$display", "Test 3 Failed" {0 0 0};
 T_2.5 ;
     %end;
     .thread T_2;

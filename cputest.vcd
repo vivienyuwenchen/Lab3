@@ -1,5 +1,5 @@
 $date
-	Tue Oct 30 19:38:13 2018
+	Wed Oct 31 19:18:45 2018
 $end
 $version
 	Icarus Verilog
@@ -4421,15 +4421,14 @@ $var wire 32 *@ DataOut [31:0] $end
 $var wire 1 ! clk $end
 $var wire 1 B regWE $end
 $var wire 32 +@ Addr [31:0] $end
-$var reg 32 ,@ index [31:0] $end
 $upscope $end
 $upscope $end
 $scope module lut $end
-$var wire 6 -@ FUNCT [5:0] $end
-$var wire 6 .@ OP [5:0] $end
+$var wire 6 ,@ FUNCT [5:0] $end
+$var wire 6 -@ OP [5:0] $end
 $var wire 1 . overflow $end
 $var wire 1 ( zero $end
-$var reg 3 /@ ALUctrl [2:0] $end
+$var reg 3 .@ ALUctrl [2:0] $end
 $var reg 1 R ALUsrc $end
 $var reg 1 N IsBranch $end
 $var reg 1 M IsJAL $end
@@ -4441,404 +4440,404 @@ $var reg 1 C RegDst $end
 $var reg 1 B RegWr $end
 $upscope $end
 $scope module muxalusrc $end
-$var wire 32 0@ in1 [31:0] $end
+$var wire 32 /@ in1 [31:0] $end
 $var wire 1 R sel $end
-$var wire 32 1@ out [31:0] $end
-$var wire 32 2@ in0 [31:0] $end
+$var wire 32 0@ out [31:0] $end
+$var wire 32 1@ in0 [31:0] $end
 $upscope $end
 $scope module muxisbranch $end
-$var wire 32 3@ in0 [31:0] $end
-$var wire 32 4@ in1 [31:0] $end
+$var wire 32 2@ in0 [31:0] $end
+$var wire 32 3@ in1 [31:0] $end
 $var wire 1 N sel $end
-$var wire 32 5@ out [31:0] $end
+$var wire 32 4@ out [31:0] $end
 $upscope $end
 $scope module muxisjaldin $end
-$var wire 32 6@ in1 [31:0] $end
+$var wire 32 5@ in1 [31:0] $end
 $var wire 1 M sel $end
-$var wire 32 7@ out [31:0] $end
-$var wire 32 8@ in0 [31:0] $end
+$var wire 32 6@ out [31:0] $end
+$var wire 32 7@ in0 [31:0] $end
 $upscope $end
 $scope module muxisjr $end
 $var wire 1 L sel $end
-$var wire 32 9@ out [31:0] $end
-$var wire 32 :@ in1 [31:0] $end
-$var wire 32 ;@ in0 [31:0] $end
+$var wire 32 8@ out [31:0] $end
+$var wire 32 9@ in1 [31:0] $end
+$var wire 32 :@ in0 [31:0] $end
 $upscope $end
 $scope module muxisjump $end
-$var wire 32 <@ in0 [31:0] $end
+$var wire 32 ;@ in0 [31:0] $end
 $var wire 1 K sel $end
-$var wire 32 =@ out [31:0] $end
-$var wire 32 >@ in1 [31:0] $end
+$var wire 32 <@ out [31:0] $end
+$var wire 32 =@ in1 [31:0] $end
 $upscope $end
 $scope module muxixjalaw $end
-$var wire 5 ?@ in1 [4:0] $end
+$var wire 5 >@ in1 [4:0] $end
 $var wire 1 M sel $end
-$var wire 5 @@ out [4:0] $end
-$var wire 5 A@ in0 [4:0] $end
+$var wire 5 ?@ out [4:0] $end
+$var wire 5 @@ in0 [4:0] $end
 $upscope $end
 $scope module muxmem2reg $end
-$var wire 32 B@ in0 [31:0] $end
-$var wire 32 C@ in1 [31:0] $end
+$var wire 32 A@ in0 [31:0] $end
+$var wire 32 B@ in1 [31:0] $end
 $var wire 1 J sel $end
-$var wire 32 D@ out [31:0] $end
+$var wire 32 C@ out [31:0] $end
 $upscope $end
 $scope module muxregdst $end
-$var wire 5 E@ in0 [4:0] $end
-$var wire 5 F@ in1 [4:0] $end
+$var wire 5 D@ in0 [4:0] $end
+$var wire 5 E@ in1 [4:0] $end
 $var wire 1 C sel $end
-$var wire 5 G@ out [4:0] $end
+$var wire 5 F@ out [4:0] $end
 $upscope $end
 $scope module muxshift2 $end
-$var wire 32 H@ in0 [31:0] $end
-$var wire 32 I@ in1 [31:0] $end
+$var wire 32 G@ in0 [31:0] $end
+$var wire 32 H@ in1 [31:0] $end
 $var wire 1 N sel $end
-$var wire 32 J@ out [31:0] $end
+$var wire 32 I@ out [31:0] $end
 $upscope $end
 $scope module pccounter $end
-$var wire 32 K@ d [31:0] $end
-$var wire 1 L@ enable $end
+$var wire 32 J@ d [31:0] $end
+$var wire 1 K@ enable $end
 $var wire 1 ! trigger $end
-$var reg 32 M@ q [31:0] $end
+$var reg 32 L@ q [31:0] $end
 $upscope $end
 $scope module register $end
 $var wire 1 ! Clk $end
-$var wire 5 N@ ReadRegister1 [4:0] $end
-$var wire 5 O@ ReadRegister2 [4:0] $end
+$var wire 5 M@ ReadRegister1 [4:0] $end
+$var wire 5 N@ ReadRegister2 [4:0] $end
 $var wire 1 B RegWrite $end
-$var wire 32 P@ WriteData [31:0] $end
-$var wire 5 Q@ WriteRegister [4:0] $end
-$var wire 32 R@ ReadData2 [31:0] $end
-$var wire 32 S@ ReadData1 [31:0] $end
-$var wire 32 T@ DecoderOutput [31:0] $end
+$var wire 32 O@ WriteData [31:0] $end
+$var wire 5 P@ WriteRegister [4:0] $end
+$var wire 32 Q@ ReadData2 [31:0] $end
+$var wire 32 R@ ReadData1 [31:0] $end
+$var wire 32 S@ DecoderOutput [31:0] $end
 $scope begin genblk1[1] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 U@ d [31:0] $end
-$var wire 1 V@ wrenable $end
-$var reg 32 W@ q [31:0] $end
+$var wire 32 T@ d [31:0] $end
+$var wire 1 U@ wrenable $end
+$var reg 32 V@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[2] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 X@ d [31:0] $end
-$var wire 1 Y@ wrenable $end
-$var reg 32 Z@ q [31:0] $end
+$var wire 32 W@ d [31:0] $end
+$var wire 1 X@ wrenable $end
+$var reg 32 Y@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[3] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 [@ d [31:0] $end
-$var wire 1 \@ wrenable $end
-$var reg 32 ]@ q [31:0] $end
+$var wire 32 Z@ d [31:0] $end
+$var wire 1 [@ wrenable $end
+$var reg 32 \@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[4] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 ^@ d [31:0] $end
-$var wire 1 _@ wrenable $end
-$var reg 32 `@ q [31:0] $end
+$var wire 32 ]@ d [31:0] $end
+$var wire 1 ^@ wrenable $end
+$var reg 32 _@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[5] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 a@ d [31:0] $end
-$var wire 1 b@ wrenable $end
-$var reg 32 c@ q [31:0] $end
+$var wire 32 `@ d [31:0] $end
+$var wire 1 a@ wrenable $end
+$var reg 32 b@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[6] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 d@ d [31:0] $end
-$var wire 1 e@ wrenable $end
-$var reg 32 f@ q [31:0] $end
+$var wire 32 c@ d [31:0] $end
+$var wire 1 d@ wrenable $end
+$var reg 32 e@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[7] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 g@ d [31:0] $end
-$var wire 1 h@ wrenable $end
-$var reg 32 i@ q [31:0] $end
+$var wire 32 f@ d [31:0] $end
+$var wire 1 g@ wrenable $end
+$var reg 32 h@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[8] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 j@ d [31:0] $end
-$var wire 1 k@ wrenable $end
-$var reg 32 l@ q [31:0] $end
+$var wire 32 i@ d [31:0] $end
+$var wire 1 j@ wrenable $end
+$var reg 32 k@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[9] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 m@ d [31:0] $end
-$var wire 1 n@ wrenable $end
-$var reg 32 o@ q [31:0] $end
+$var wire 32 l@ d [31:0] $end
+$var wire 1 m@ wrenable $end
+$var reg 32 n@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[10] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 p@ d [31:0] $end
-$var wire 1 q@ wrenable $end
-$var reg 32 r@ q [31:0] $end
+$var wire 32 o@ d [31:0] $end
+$var wire 1 p@ wrenable $end
+$var reg 32 q@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[11] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 s@ d [31:0] $end
-$var wire 1 t@ wrenable $end
-$var reg 32 u@ q [31:0] $end
+$var wire 32 r@ d [31:0] $end
+$var wire 1 s@ wrenable $end
+$var reg 32 t@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[12] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 v@ d [31:0] $end
-$var wire 1 w@ wrenable $end
-$var reg 32 x@ q [31:0] $end
+$var wire 32 u@ d [31:0] $end
+$var wire 1 v@ wrenable $end
+$var reg 32 w@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[13] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 y@ d [31:0] $end
-$var wire 1 z@ wrenable $end
-$var reg 32 {@ q [31:0] $end
+$var wire 32 x@ d [31:0] $end
+$var wire 1 y@ wrenable $end
+$var reg 32 z@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[14] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 |@ d [31:0] $end
-$var wire 1 }@ wrenable $end
-$var reg 32 ~@ q [31:0] $end
+$var wire 32 {@ d [31:0] $end
+$var wire 1 |@ wrenable $end
+$var reg 32 }@ q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[15] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 !A d [31:0] $end
-$var wire 1 "A wrenable $end
-$var reg 32 #A q [31:0] $end
+$var wire 32 ~@ d [31:0] $end
+$var wire 1 !A wrenable $end
+$var reg 32 "A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[16] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 $A d [31:0] $end
-$var wire 1 %A wrenable $end
-$var reg 32 &A q [31:0] $end
+$var wire 32 #A d [31:0] $end
+$var wire 1 $A wrenable $end
+$var reg 32 %A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[17] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 'A d [31:0] $end
-$var wire 1 (A wrenable $end
-$var reg 32 )A q [31:0] $end
+$var wire 32 &A d [31:0] $end
+$var wire 1 'A wrenable $end
+$var reg 32 (A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[18] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 *A d [31:0] $end
-$var wire 1 +A wrenable $end
-$var reg 32 ,A q [31:0] $end
+$var wire 32 )A d [31:0] $end
+$var wire 1 *A wrenable $end
+$var reg 32 +A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[19] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 -A d [31:0] $end
-$var wire 1 .A wrenable $end
-$var reg 32 /A q [31:0] $end
+$var wire 32 ,A d [31:0] $end
+$var wire 1 -A wrenable $end
+$var reg 32 .A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[20] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 0A d [31:0] $end
-$var wire 1 1A wrenable $end
-$var reg 32 2A q [31:0] $end
+$var wire 32 /A d [31:0] $end
+$var wire 1 0A wrenable $end
+$var reg 32 1A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[21] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 3A d [31:0] $end
-$var wire 1 4A wrenable $end
-$var reg 32 5A q [31:0] $end
+$var wire 32 2A d [31:0] $end
+$var wire 1 3A wrenable $end
+$var reg 32 4A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[22] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 6A d [31:0] $end
-$var wire 1 7A wrenable $end
-$var reg 32 8A q [31:0] $end
+$var wire 32 5A d [31:0] $end
+$var wire 1 6A wrenable $end
+$var reg 32 7A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[23] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 9A d [31:0] $end
-$var wire 1 :A wrenable $end
-$var reg 32 ;A q [31:0] $end
+$var wire 32 8A d [31:0] $end
+$var wire 1 9A wrenable $end
+$var reg 32 :A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[24] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 <A d [31:0] $end
-$var wire 1 =A wrenable $end
-$var reg 32 >A q [31:0] $end
+$var wire 32 ;A d [31:0] $end
+$var wire 1 <A wrenable $end
+$var reg 32 =A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[25] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 ?A d [31:0] $end
-$var wire 1 @A wrenable $end
-$var reg 32 AA q [31:0] $end
+$var wire 32 >A d [31:0] $end
+$var wire 1 ?A wrenable $end
+$var reg 32 @A q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[26] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 BA d [31:0] $end
-$var wire 1 CA wrenable $end
-$var reg 32 DA q [31:0] $end
+$var wire 32 AA d [31:0] $end
+$var wire 1 BA wrenable $end
+$var reg 32 CA q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[27] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 EA d [31:0] $end
-$var wire 1 FA wrenable $end
-$var reg 32 GA q [31:0] $end
+$var wire 32 DA d [31:0] $end
+$var wire 1 EA wrenable $end
+$var reg 32 FA q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[28] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 HA d [31:0] $end
-$var wire 1 IA wrenable $end
-$var reg 32 JA q [31:0] $end
+$var wire 32 GA d [31:0] $end
+$var wire 1 HA wrenable $end
+$var reg 32 IA q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[29] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 KA d [31:0] $end
-$var wire 1 LA wrenable $end
-$var reg 32 MA q [31:0] $end
+$var wire 32 JA d [31:0] $end
+$var wire 1 KA wrenable $end
+$var reg 32 LA q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[30] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 NA d [31:0] $end
-$var wire 1 OA wrenable $end
-$var reg 32 PA q [31:0] $end
+$var wire 32 MA d [31:0] $end
+$var wire 1 NA wrenable $end
+$var reg 32 OA q [31:0] $end
 $upscope $end
 $upscope $end
 $scope begin genblk1[31] $end
 $scope module register $end
 $var wire 1 ! clk $end
-$var wire 32 QA d [31:0] $end
-$var wire 1 RA wrenable $end
-$var reg 32 SA q [31:0] $end
+$var wire 32 PA d [31:0] $end
+$var wire 1 QA wrenable $end
+$var reg 32 RA q [31:0] $end
 $upscope $end
 $upscope $end
 $scope module decoder $end
-$var wire 5 TA address [4:0] $end
+$var wire 5 SA address [4:0] $end
 $var wire 1 B enable $end
-$var wire 32 UA out [31:0] $end
+$var wire 32 TA out [31:0] $end
 $upscope $end
 $scope module multiplexer1 $end
-$var wire 5 VA address [4:0] $end
-$var wire 32 WA input1 [31:0] $end
-$var wire 32 XA input10 [31:0] $end
-$var wire 32 YA input11 [31:0] $end
-$var wire 32 ZA input12 [31:0] $end
-$var wire 32 [A input13 [31:0] $end
-$var wire 32 \A input14 [31:0] $end
-$var wire 32 ]A input15 [31:0] $end
-$var wire 32 ^A input16 [31:0] $end
-$var wire 32 _A input17 [31:0] $end
-$var wire 32 `A input18 [31:0] $end
-$var wire 32 aA input19 [31:0] $end
-$var wire 32 bA input2 [31:0] $end
-$var wire 32 cA input20 [31:0] $end
-$var wire 32 dA input21 [31:0] $end
-$var wire 32 eA input22 [31:0] $end
-$var wire 32 fA input23 [31:0] $end
-$var wire 32 gA input24 [31:0] $end
-$var wire 32 hA input25 [31:0] $end
-$var wire 32 iA input26 [31:0] $end
-$var wire 32 jA input27 [31:0] $end
-$var wire 32 kA input28 [31:0] $end
-$var wire 32 lA input29 [31:0] $end
-$var wire 32 mA input3 [31:0] $end
-$var wire 32 nA input30 [31:0] $end
-$var wire 32 oA input31 [31:0] $end
-$var wire 32 pA input4 [31:0] $end
-$var wire 32 qA input5 [31:0] $end
-$var wire 32 rA input6 [31:0] $end
-$var wire 32 sA input7 [31:0] $end
-$var wire 32 tA input8 [31:0] $end
-$var wire 32 uA input9 [31:0] $end
-$var wire 32 vA out [31:0] $end
-$var wire 32 wA input0 [31:0] $end
+$var wire 5 UA address [4:0] $end
+$var wire 32 VA input1 [31:0] $end
+$var wire 32 WA input10 [31:0] $end
+$var wire 32 XA input11 [31:0] $end
+$var wire 32 YA input12 [31:0] $end
+$var wire 32 ZA input13 [31:0] $end
+$var wire 32 [A input14 [31:0] $end
+$var wire 32 \A input15 [31:0] $end
+$var wire 32 ]A input16 [31:0] $end
+$var wire 32 ^A input17 [31:0] $end
+$var wire 32 _A input18 [31:0] $end
+$var wire 32 `A input19 [31:0] $end
+$var wire 32 aA input2 [31:0] $end
+$var wire 32 bA input20 [31:0] $end
+$var wire 32 cA input21 [31:0] $end
+$var wire 32 dA input22 [31:0] $end
+$var wire 32 eA input23 [31:0] $end
+$var wire 32 fA input24 [31:0] $end
+$var wire 32 gA input25 [31:0] $end
+$var wire 32 hA input26 [31:0] $end
+$var wire 32 iA input27 [31:0] $end
+$var wire 32 jA input28 [31:0] $end
+$var wire 32 kA input29 [31:0] $end
+$var wire 32 lA input3 [31:0] $end
+$var wire 32 mA input30 [31:0] $end
+$var wire 32 nA input31 [31:0] $end
+$var wire 32 oA input4 [31:0] $end
+$var wire 32 pA input5 [31:0] $end
+$var wire 32 qA input6 [31:0] $end
+$var wire 32 rA input7 [31:0] $end
+$var wire 32 sA input8 [31:0] $end
+$var wire 32 tA input9 [31:0] $end
+$var wire 32 uA out [31:0] $end
+$var wire 32 vA input0 [31:0] $end
 $upscope $end
 $scope module multiplexer2 $end
-$var wire 5 xA address [4:0] $end
-$var wire 32 yA input1 [31:0] $end
-$var wire 32 zA input10 [31:0] $end
-$var wire 32 {A input11 [31:0] $end
-$var wire 32 |A input12 [31:0] $end
-$var wire 32 }A input13 [31:0] $end
-$var wire 32 ~A input14 [31:0] $end
-$var wire 32 !B input15 [31:0] $end
-$var wire 32 "B input16 [31:0] $end
-$var wire 32 #B input17 [31:0] $end
-$var wire 32 $B input18 [31:0] $end
-$var wire 32 %B input19 [31:0] $end
-$var wire 32 &B input2 [31:0] $end
-$var wire 32 'B input20 [31:0] $end
-$var wire 32 (B input21 [31:0] $end
-$var wire 32 )B input22 [31:0] $end
-$var wire 32 *B input23 [31:0] $end
-$var wire 32 +B input24 [31:0] $end
-$var wire 32 ,B input25 [31:0] $end
-$var wire 32 -B input26 [31:0] $end
-$var wire 32 .B input27 [31:0] $end
-$var wire 32 /B input28 [31:0] $end
-$var wire 32 0B input29 [31:0] $end
-$var wire 32 1B input3 [31:0] $end
-$var wire 32 2B input30 [31:0] $end
-$var wire 32 3B input31 [31:0] $end
-$var wire 32 4B input4 [31:0] $end
-$var wire 32 5B input5 [31:0] $end
-$var wire 32 6B input6 [31:0] $end
-$var wire 32 7B input7 [31:0] $end
-$var wire 32 8B input8 [31:0] $end
-$var wire 32 9B input9 [31:0] $end
-$var wire 32 :B out [31:0] $end
-$var wire 32 ;B input0 [31:0] $end
+$var wire 5 wA address [4:0] $end
+$var wire 32 xA input1 [31:0] $end
+$var wire 32 yA input10 [31:0] $end
+$var wire 32 zA input11 [31:0] $end
+$var wire 32 {A input12 [31:0] $end
+$var wire 32 |A input13 [31:0] $end
+$var wire 32 }A input14 [31:0] $end
+$var wire 32 ~A input15 [31:0] $end
+$var wire 32 !B input16 [31:0] $end
+$var wire 32 "B input17 [31:0] $end
+$var wire 32 #B input18 [31:0] $end
+$var wire 32 $B input19 [31:0] $end
+$var wire 32 %B input2 [31:0] $end
+$var wire 32 &B input20 [31:0] $end
+$var wire 32 'B input21 [31:0] $end
+$var wire 32 (B input22 [31:0] $end
+$var wire 32 )B input23 [31:0] $end
+$var wire 32 *B input24 [31:0] $end
+$var wire 32 +B input25 [31:0] $end
+$var wire 32 ,B input26 [31:0] $end
+$var wire 32 -B input27 [31:0] $end
+$var wire 32 .B input28 [31:0] $end
+$var wire 32 /B input29 [31:0] $end
+$var wire 32 0B input3 [31:0] $end
+$var wire 32 1B input30 [31:0] $end
+$var wire 32 2B input31 [31:0] $end
+$var wire 32 3B input4 [31:0] $end
+$var wire 32 4B input5 [31:0] $end
+$var wire 32 5B input6 [31:0] $end
+$var wire 32 6B input7 [31:0] $end
+$var wire 32 7B input8 [31:0] $end
+$var wire 32 8B input9 [31:0] $end
+$var wire 32 9B out [31:0] $end
+$var wire 32 :B input0 [31:0] $end
 $upscope $end
 $scope module register0 $end
 $var wire 1 ! clk $end
 $var wire 1 B wrenable $end
-$var reg 32 <B q [31:0] $end
+$var reg 32 ;B q [31:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
@@ -4846,7 +4845,6 @@ $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-bx <B
 bx ;B
 bx :B
 bx 9B
@@ -4918,98 +4916,98 @@ bx VA
 bx UA
 bx TA
 bx SA
-xRA
-bx QA
+bx RA
+xQA
 bx PA
-xOA
-bx NA
+bx OA
+xNA
 bx MA
-xLA
-bx KA
+bx LA
+xKA
 bx JA
-xIA
-bx HA
+bx IA
+xHA
 bx GA
-xFA
-bx EA
+bx FA
+xEA
 bx DA
-xCA
-bx BA
+bx CA
+xBA
 bx AA
-x@A
-bx ?A
+bx @A
+x?A
 bx >A
-x=A
-bx <A
+bx =A
+x<A
 bx ;A
-x:A
-bx 9A
+bx :A
+x9A
 bx 8A
-x7A
-bx 6A
+bx 7A
+x6A
 bx 5A
-x4A
-bx 3A
+bx 4A
+x3A
 bx 2A
-x1A
-bx 0A
+bx 1A
+x0A
 bx /A
-x.A
-bx -A
+bx .A
+x-A
 bx ,A
-x+A
-bx *A
+bx +A
+x*A
 bx )A
-x(A
-bx 'A
+bx (A
+x'A
 bx &A
-x%A
-bx $A
+bx %A
+x$A
 bx #A
-x"A
-bx !A
+bx "A
+x!A
 bx ~@
-x}@
-bx |@
+bx }@
+x|@
 bx {@
-xz@
-bx y@
+bx z@
+xy@
 bx x@
-xw@
-bx v@
+bx w@
+xv@
 bx u@
-xt@
-bx s@
+bx t@
+xs@
 bx r@
-xq@
-bx p@
+bx q@
+xp@
 bx o@
-xn@
-bx m@
+bx n@
+xm@
 bx l@
-xk@
-bx j@
+bx k@
+xj@
 bx i@
-xh@
-bx g@
+bx h@
+xg@
 bx f@
-xe@
-bx d@
+bx e@
+xd@
 bx c@
-xb@
-bx a@
+bx b@
+xa@
 bx `@
-x_@
-bx ^@
+bx _@
+x^@
 bx ]@
-x\@
-bx [@
+bx \@
+x[@
 bx Z@
-xY@
-bx X@
+bx Y@
+xX@
 bx W@
-xV@
-bx U@
+bx V@
+xU@
 bx T@
 bx S@
 bx R@
@@ -5018,12 +5016,12 @@ bx P@
 bx O@
 bx N@
 bx M@
-1L@
-bx K@
-bx00 J@
+bx L@
+1K@
+bx J@
 bx00 I@
 bx00 H@
-bx G@
+bx00 G@
 bx F@
 bx E@
 bx D@
@@ -5031,9 +5029,9 @@ bx C@
 bx B@
 bx A@
 bx @@
-b11111 ?@
-bx00 >@
-bx =@
+bx ?@
+b11111 >@
+bx00 =@
 bx <@
 bx ;@
 bx :@
