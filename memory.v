@@ -1,24 +1,27 @@
-module memory_test
+module memory
 (
-  input clk, regWE,
-  input[31:0] Addr, //31:0
-  input[31:0] DataIn,
-  output[31:0] DataOut
-  input
+    input clk, WrEn,
+    input[31:0] DataAddr, //31:0
+    input[31:0] DataIn,
+    output[31:0] DataOut,
+    input[31:0] InstrAddr,
+    output[31:0] Instruction
 );
-  wire [31:0] index;
-  reg [31:0] mem[1023:0];
+    wire [11:0] InstrIndex;
+    wire [11:0] DataIndex;
+    reg [31:0] mem[4095:0];
 
-  assign index = {{2{Addr[31]}}, Addr[31:2]};
-  always @(posedge clk) begin
-    // index <= {{2{Addr[31]}}, Addr[31:2]};
-    if (regWE) begin
-      mem[index] <= DataIn;
-      // mem[Addr]<= DataIn;
+    assign InstrIndex = {InstrAddr[13:2]};
+    assign DataIndex = {DataAddr[13:2]};
+
+    always @(posedge clk) begin
+        if (WrEn) begin
+            mem[DataAddr] <= DataIn;
+        end
     end
-  end
 
-  initial $readmemh("addN.dat", mem);
+    initial $readmemh("addN.dat", mem);
 
-  assign DataOut = mem[index];
+    assign Instruction = mem[InstrIndex];
+    assign DataOut = mem[DataIndex];
 endmodule

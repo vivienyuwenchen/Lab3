@@ -68,7 +68,7 @@ module cpu_test ();
 	// automatically report the results.
 	$display("Time | PC       | Instruction");
 	repeat(3) begin
-        $display("%4t | %h | %h", $time, cpu.PCcount, cpu.INSTRUCT); #1000 ;
+        $display("%4t | %h | %h", $time, cpu.PCcount, cpu.instruction); #1000 ;
         end
 	$display("... more execution (see waveform)");
 

@@ -3,7 +3,8 @@
 //------------------------------------------------------------------------
 
 `include "regfile.v"
-`include "datamemory.v"
+// `include "datamemory.v"
+`include "memory.v"
 `include "basicbuildingblocks.v"
 `include "alu.v"
 `include "instructiondecoder.v"
@@ -34,8 +35,15 @@ module execution
     wire [31:0] regDa, regDb, regDin, SE, result;
     wire [4:0] Rint, regAw;
     wire [31:0] PCcount, jumpaddr, branchaddr;
-    wire [31:0] memout;
+    wire [31:0] memout, instruction;
 
+    memory mem(.clk(clk),
+                    .WrEn(MemWr),
+                    .DataAddr(result),
+                    .DataIn(regDb),
+                    .DataOut(memout),
+                    .InstrAddr(PCcount),
+                    .Instruction(instruction));
 
     instructiondecoder decoder(.OP(OP),
                     .RT(RT),
@@ -45,9 +53,7 @@ module execution
                     .TA(TA),
                     .SHAMT(SHAMT),
                     .FUNCT(FUNCT),
-                    .INSTRUCT(INSTRUCT),
-                    .readAddress(PCcount),
-                    .Clk(clk));
+                    .instruction(instruction));
 
     instructionLUT lut(.OP(OP),
                     .FUNCT(FUNCT),
@@ -68,14 +74,6 @@ module execution
                     .enable(1'b1),
                     .d(isjrout),
                     .q(PCcount));
-
-    // alu aluadd4(.carryout(aluadd4carryout),
-    //                 .zero(aluadd4zero),
-    //                 .overflow(aluadd4overflow),
-    //                 .result(PCplus4),
-    //                 .operandA(PCcount),
-    //                 .operandB(32'h00000004),
-    //                 .command(3'b000));
 
     assign PCplus4 = PCcount + 32'h00000004;
 
@@ -136,19 +134,12 @@ module execution
                     .operandB(alusrcout),
                     .command(ALUctrl));
 
-
     assign SE = {{16{IMM16[15]}}, IMM16};
 
     mux2 #(32) muxalusrc(.in0(regDb),
                     .in1(SE),
                     .sel(ALUsrc),
                     .out(alusrcout));
-
-    datamemory #(32,32768,32) datamem(.clk(clk),
-                    .dataOut(memout),
-                    .address(result),
-                    .writeEnable(MemWr),
-                    .dataIn(regDb));
 
     mux2 #(32) muxmem2reg(.in0(result),
                     .in1(memout),

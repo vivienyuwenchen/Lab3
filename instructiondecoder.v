@@ -1,4 +1,4 @@
-`include "memory.v"
+// `include "memory.v"
 module instructiondecoder
 (
     output [5:0]  OP,     //OP code
@@ -9,46 +9,16 @@ module instructiondecoder
     output  [25:0]    TA,  // the 25:0 bit of instruction -  target address
     output  [4:0]       SHAMT, // ther 10:6 biit of R type instruction
     output  [5:0]       FUNCT,  // the 5:0 bit of the R type instruction
-    output  [31:0]      INSTRUCT,
-    input  [31:0]    readAddress,  // the 32 bit address from the Program Counter
-    input           Clk   // Clock (Positive Edge Triggered)
+    input  [31:0]    instruction  // the 32 bit address from the Program Counter
 );
 
-  wire [31:0] instructions;
-
-  memory_test instructionMem(.clk(Clk), .regWE(1'b0), .Addr(readAddress), .DataIn(32'b0), .DataOut(instructions));
-  assign OP = instructions[31:26];
-  assign RT = instructions[20:16];
-  assign RS = instructions[25:21];
-  assign RD = instructions[15:11];
-  assign IMM16 = instructions[15:0];
-  assign TA = instructions[25:0];
-  assign SHAMT = instructions[10:6];
-  assign FUNCT = instructions[5:0];
-  assign INSTRUCT = instructions;
+  assign OP = instruction[31:26];
+  assign RT = instruction[20:16];
+  assign RS = instruction[25:21];
+  assign RD = instruction[15:11];
+  assign IMM16 = instruction[15:0];
+  assign TA = instruction[25:0];
+  assign SHAMT = instruction[10:6];
+  assign FUNCT = instruction[5:0];
 
 endmodule
-
-// module memory
-// (
-//   input clk, regWE,
-//   input[31:0] Addr,
-//   input[9:0] DataIn, /31:0
-//   output[31:0]  DataOut
-// );
-//   reg [31:0] index;
-//   reg [31:0] mem[2048:0];
-//   //assign index = {{2{Addr[31]}}, Addr[31:2]};
-//
-// //  $display("%", mem)
-//   always @(posedge clk) begin
-//     if (regWE) begin
-//     //  mem[index] <= DataIn;
-//     mem[Addr] <= DataIn;
-//     end
-//   end
-//
-//   initial $readmemh("mem.dat", mem, 0);
-//   assign DataOut = mem[Addr];
-//   //assign DataOut = mem[index];
-// endmodule

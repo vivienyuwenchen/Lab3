@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.94 (w)1999-2018 BSI
-[*] Thu Nov  1 20:41:14 2018
+[*] Thu Nov  1 22:06:19 2018
 [*]
 [dumpfile] "/home/comparch/CompArch_HW/Lab3/cputest.vcd"
-[dumpfile_mtime] "Thu Nov  1 20:20:05 2018"
-[dumpfile_size] 468411
+[dumpfile_mtime] "Thu Nov  1 22:04:37 2018"
+[dumpfile_size] 291225
 [savefile] "/home/comparch/CompArch_HW/Lab3/test.gtkw"
-[timestart] 0
-[size] 2014 600
-[pos] 58 -182
-*-4.000000 10 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 253
+[size] 1396 600
+[pos] -1 -1
+*-5.000000 330 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] cpu_test.
 [treeopen] cpu_test.cpu.
 [treeopen] cpu_test.cpu.register.
@@ -19,9 +19,6 @@
 [signals_width] 174
 [sst_expanded] 1
 [sst_vpaned_height] 160
-@4022
-^>1 /usr/local/bin/mips-dasm-filter
-cpu_test.cpu.INSTRUCT[31:0]
 @c00022
 cpu_test.cpu.register.genblk1[30].register.d[31:0]
 @28
@@ -68,7 +65,10 @@ cpu_test.cpu.register.genblk1[8].register.q[31:0]
 cpu_test.cpu.register.decoder.address[4:0]
 @28
 cpu_test.cpu.lut.MemToReg
-@23
+@22
 cpu_test.cpu.lut.OP[5:0]
+cpu_test.cpu.register.ReadData1[31:0]
+@23
+cpu_test.cpu.register.ReadData2[31:0]
 [pattern_trace] 1
 [pattern_trace] 0
