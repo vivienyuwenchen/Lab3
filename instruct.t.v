@@ -21,9 +21,7 @@ module instructiontest();
                     .FUNCT(FUNCT),
                     .INSTRUCT(INSTRUCT),
                     .readAddress(PCcount),
-                    .RegWrite(RegWr),
-                    .Clk(clk),
-                    .DataIn(datain));
+                    .Clk(clk));
     initial begin
         $display("Starting instruction test..");
 //

@@ -8,14 +8,23 @@ module dff #( parameter W = 32 )
 (
     input trigger,
     input enable,
-    input      [W-1:0] d,
-    output reg [W-1:0] q
+    input   [W-1:0] d,
+    output  [W-1:0] q
 );
+
+    reg [W-1:0] mem;
+
+    initial begin
+        mem <= {W{1'b0}};
+    end
+
     always @(posedge trigger) begin
         if(enable) begin
-            q <= d;
+            mem <= d;
         end
     end
+
+    assign q = mem;
 endmodule
 
 // Two-input MUX with parameterized bit width (default: 1-bit)
