@@ -56,6 +56,8 @@ module register32 #(parameter W = 32)
     input               clk
 );
 
+    initial q = {W{1'b0}};
+
     always @(posedge clk) begin
         if(wrenable) begin
             q <= d;
@@ -71,6 +73,8 @@ module register32zero #(parameter W = 32)
     input               wrenable,
     input               clk
 );
+
+    initial q = {W{1'b0}};
 
     always @(posedge clk) begin
         if(wrenable) begin

@@ -115,7 +115,7 @@ module testALU();
     	if(result != 32'd4294967295) $display("n - n = n TEST FAILED - result: %d", result); //the result is also a negative twos complement number
     	if(overflow != 0) $display("n - n = n OVERFLOW FAILED");
     	if(carryout != 0) $display("n - n = n CARRYOUT FAILED");
-    	operandA=32'd3657483652;operandB=32'd3657483651; #4000  
+    	operandA=32'd3657483652;operandB=32'd3657483651; #4000
     	if(result != 32'd1) $display("n - n = p TEST FAILED - result: %d", result);
     	if(overflow != 0) $display("n - n = p OVERFLOW FAILED");
     	if(carryout != 1) $display("n - n = p CARRYOUT FAILED");

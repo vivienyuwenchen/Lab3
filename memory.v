@@ -16,7 +16,7 @@ module memory_test
     end
   end
 
-  initial $readmemh("mem.dat", mem);
+  initial $readmemh("addN.dat", mem);
 
   assign DataOut = mem[Addr];
 endmodule

@@ -69,13 +69,15 @@ module execution
                     .d(isjrout),
                     .q(PCcount));
 
-    alu aluadd4(.carryout(aluadd4carryout),
-                    .zero(aluadd4zero),
-                    .overflow(aluadd4overflow),
-                    .result(PCplus4),
-                    .operandA(PCcount),
-                    .operandB(32'h00000004),
-                    .command(3'b000));
+    // alu aluadd4(.carryout(aluadd4carryout),
+    //                 .zero(aluadd4zero),
+    //                 .overflow(aluadd4overflow),
+    //                 .result(PCplus4),
+    //                 .operandA(PCcount),
+    //                 .operandB(32'h00000004),
+    //                 .command(3'b000));
+
+    assign PCplus4 = PCcount + 32'h00000004;
 
     assign jumpaddr = {PCplus4[31:28], TA, 2'b00};
     assign branchaddr = {{14{IMM16[15]}}, IMM16, 2'b00};
