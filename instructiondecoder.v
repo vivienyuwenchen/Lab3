@@ -11,14 +11,12 @@ module instructiondecoder
     output  [5:0]       FUNCT,  // the 5:0 bit of the R type instruction
     output  [31:0]      INSTRUCT,
     input  [31:0]    readAddress,  // the 32 bit address from the Program Counter
-    input           RegWrite,       // Enable writing of register when High
-    input           Clk,   // Clock (Positive Edge Triggered)
-    input   [31:0] DataIn
+    input           Clk   // Clock (Positive Edge Triggered)
 );
 
   wire [31:0] instructions;
 
-  memory_test instructionMem(.clk(Clk), .regWE(RegWrite), .Addr(readAddress), .DataIn(DataIn), .DataOut(instructions));
+  memory_test instructionMem(.clk(Clk), .regWE(1'b0), .Addr(readAddress), .DataIn(32'b0), .DataOut(instructions));
   assign OP = instructions[31:26];
   assign RT = instructions[20:16];
   assign RS = instructions[25:21];
