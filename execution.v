@@ -47,9 +47,7 @@ module execution
                     .FUNCT(FUNCT),
                     .INSTRUCT(INSTRUCT),
                     .readAddress(PCcount),
-                    .RegWrite(RegWr),
-                    .Clk(clk),
-                    .DataIn(datain));
+                    .Clk(clk));
 
     instructionLUT lut(.OP(OP),
                     .FUNCT(FUNCT),
@@ -149,7 +147,7 @@ module execution
                     .sel(ALUsrc),
                     .out(alusrcout));
 
-    datamemory #(32,32,32) datamem(.clk(clk),
+    datamemory #(32,32768,32) datamem(.clk(clk),
                     .dataOut(memout),
                     .address(result),
                     .writeEnable(MemWr),
