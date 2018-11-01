@@ -1,220 +1,94 @@
-`define AND2 and #40
-`define AND3 and #60
-`define AND4 and #80
-`define OR2 or #40
-`define OR8 or #160
-`define XOR2 xor #40
-`define NOT1 not #10
-`define NAND2 nand #20
-`define NOR2 nor #20
-`define NOR32 nor #320
+// ALU circuit
+`define ADD  3'd0
+`define SUB  3'd1
+`define Xor  3'd2
+`define SLT  3'd3
+`define And  3'd4
+`define Nand 3'd5
+`define Nor  3'd6
+`define Or   3'd7
+`include "alu_function.v"
+`define NOR32 nor  //32 input NOR
 
-module didOverflow // calculates overflow of 2 bits
+module ALU
 (
-    output overflow,
-    input a,
-    input b,
-    input s, // most sig bit
-    input sub
+output[31:0]  result,
+output        carryout,
+output        zero,
+output        overflow,
+input[31:0]   operandA,
+input[31:0]   operandB,
+input[2:0]    command
 );
-    wire BxorSub;
-    wire notA;
-    wire notB;
-    wire notS;
-    wire aAndB;
-    wire notaAndNotb;
-    wire negToPos;
-    wire posToNeg;
-    `XOR2 xorgate(BxorSub, b, sub);
-    `NOT1 aNot(notA, a);
-    `NOT1 bNot(notB, BxorSub);
-    `NOT1 sNot(notS, s);
-    `AND2 andab(aAndB, a, BxorSub);
-    `AND2 andabNot(notaAndNotb, notA, notB);
-    `AND2 andSwitch1(negToPos, aAndB, notS);
-    `AND2 andSwitch2(posToNeg, notaAndNotb, s);
-    `OR2 orGate(overflow, negToPos, posToNeg);
-endmodule
+  //declare wires
+	wire[31:0] out0, out1, out2, out3, out4;
+	wire 			 cout0, cout1, cout2, cout3, cout4;
+	wire 			 over0, over1, over2, over3, over4;
+	wire 			 invert;
+	wire[2:0]  muxindex;
+	wire[32:0] carryin0;
 
-module AdderAndSubtractor
-(
-    output res,
-    output carryout,
-    input a,
-    input b,
-    input isSubtract,
-    input carryin
-);
-    wire BxorSub;
-    wire xAorB;
-    wire AandB;
-    wire xAorBandCin;
-    `XOR2  xorgate(BxorSub, b, isSubtract);
-    `XOR2  xorgate(xAorB, a, BxorSub);   // OR gate produces AorB from A and B
-    `XOR2  xorgate(res, xAorB, carryin);
-    `AND2  andgate(AandB, a, BxorSub);
-    `AND2  andgate(xAorBandCin, xAorB, carryin);
-    `OR2   orgate(carryout, AandB, xAorBandCin);
-endmodule
+  //use LUT to get variable assignments for muxindex and invert depending on the input command
+	ALUcontrolLUT lut(.muxindex(muxindex), .invert(invert), .ALUcommand(command));
+  //first carryin of add-subtract module is identical to the invert signal
+	assign carryin0[0] = invert;
 
-module aluBitSlice
-(
-    output carryOut,
-    output initialResult,
-    input a,
-    input b,
-    input carryIn,
-    input isSubtract,
-    //selection bits to define what operand we are using
-    input s0,
-    input s1,
-    input s2
-);
+  //bit slice approach, generate 32 of each module for full capability
+	genvar i;
+	generate for (i = 0; i < 32; i = i + 1) begin
+			AddSubN adder(.sum(out0[i]), .carryout(carryin0[i+1]), .a(operandA[i]), .b(operandB[i]), .carryin(carryin0[i]), .subtract(invert));
 
-    wire addSub;
-    // intermediate results for each operand
-    wire orRes;
-    wire norRes;
-    wire xorRes;
-    wire andRes;
-    wire nandRes;
+			XORmod xorer(.out(out1[i]), .carryout(cout1), .overflow(over1), .a(operandA[i]), .b(operandB[i]));
 
-    //inverted selection lines
-    wire s0inv;
-    wire s1inv;
-    wire s2inv;
+			NANDmod nander(.out(out3[i]), .carryout(cout3), .overflow(over3), .a(operandA[i]), .b(operandB[i]), .invert(invert));
 
-    //mapped selections
-    wire isAdd;
-    wire isSub;
-    wire isOr;
-    wire isNor;
-    wire isXor;
-    wire isAnd;
-    wire isNand;
-    wire isSLT;
+			NORmod norer(.out(out4[i]), .carryout(cout4), .overflow(over4), .a(operandA[i]), .b(operandB[i]), .invert(invert));
+  end
+	endgenerate
 
-     //bitwise operations for each operand
-    `AND2(andRes, a, b);
-    `NAND2(nandRes, a, b);
-    `OR2(orRes, a, b);
-    `NOR2(norRes, a, b);
-    `XOR2(xorRes, a, b);
+	SLTmod slter (.slt(out2), .carryout(cout2), .overflow(over2), .a(operandA), .b(operandB));
 
-    AdderAndSubtractor adder (
-        .res (addSub),
-        .carryout (carryOut),
-        .a (a),
-        .b (b),
-        .isSubtract (isSubtract),
-        .carryin (carryIn)
-    );
+	//set carryout for adder, equivalent to the "carryin" of the 33rd bit
+  assign cout0 = carryin0[32];
+	//calculate overflow for adder; overflow if final carryout is not equal to carryin of most significant bit
+	`XOR OVERFLOW(over0, cout0, carryin0[31]);
 
-    //invert selection bits
-    // Is essentially a Structual Mux for selecting which operation is being computed
-    `NOT1(s0inv, s0);
-    `NOT1(s1inv, s1);
-    `NOT1(s2inv, s2);
+  //mux between generated outputs depending on muxindex given by ALUcommand
+	genvar n;
+	generate for (n = 0; n < 32; n = n + 1) begin
+			structuralMultiplexer5 resultmux (.out(result[n]), .command(muxindex), .in0(out0[n]), .in1(out1[n]), .in2(out2[n]), .in3(out3[n]), .in4(out4[n]));
+  end
+	endgenerate
 
-     //ony on of these operations will ever result in a true
-    `AND4(isAdd, addSub, s0inv, s1inv, s2inv);
-    `AND4(isSub, addSub, s0, s1inv, s2inv);
-    `AND4(isXor, xorRes, s0inv, s1, s2inv);
-    `AND4(isSLT, addSub, s0, s1, s2inv);
-    `AND4(isAnd, andRes, s0inv, s1inv, s2);
-    `AND4(isNand, nandRes, s0, s1inv, s2);
-    `AND4(isNor, norRes, s0inv, s1, s2);
-    `AND4(isOr, orRes, s0, s1, s2);
+	//mux between carryouts
+	structuralMultiplexer5 coutmux (.out(carryout), .command(muxindex), .in0(cout0), .in1(cout1), .in2(cout2), .in3(cout3), .in4(cout4));
+	//mux between overflows
+	structuralMultiplexer5 overmux (.out(overflow), .command(muxindex), .in0(over0), .in1(over1), .in2(over2), .in3(over3), .in4(over4));
 
-
-    `OR8(initialResult, isAdd, isSub, isXor, isAnd, isNand, isNor, isOr, isSLT);
+  //if all bits of the result are zero, the output zero should return zero
+	`NOR32 norgate(zero, result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8], result[9], result[10],
+		result[11], result[12], result[13], result[14], result[15], result[16], result[17], result[18], result[19], result[20], result[21], result[22],
+		result[23], result[24], result[25], result[26], result[27], result[28], result[29], result[30], result[31]);
 
 endmodule
 
-module isZero (
-    input[31:0] bitt,
-    output out
+
+module ALUcontrolLUT
+(
+output reg[2:0] muxindex,
+output reg	invert,
+input[2:0]	ALUcommand
 );
-//nor all bits, if all are zero a one will be returned if any are not a 0 will be returned.
-
-`NOR32(out, bitt[0], bitt[1], bitt[2], bitt[3], bitt[4], bitt[5], bitt[6], bitt[7], bitt[8], bitt[9], bitt[10], bitt[11], bitt[12], bitt[13], bitt[14],
-    bitt[15], bitt[16], bitt[17], bitt[18], bitt[19], bitt[20], bitt[21], bitt[22], bitt[23], bitt[24], bitt[25], bitt[26], bitt[27], bitt[28], bitt[29], bitt[30], bitt[31]);
-
-endmodule // isZero
-
-module alu (
-    output carryout,
-    output zero,
-    output overflow,
-    output[31:0] result,
-    input[31:0] operandA,
-    input[31:0] operandB,
-    input[2:0] command // s0, s1, s2
-);
-
-    wire[31:0] initialResult;
-    wire[32:0] carryOut; //larger to accommadate carry out bit
-    wire isSubtract;
-
-    `OR2(isSubtract, command[0], command[0]); // command[0] = isSubtract b001(subtract) b011(SLT) we need a one in this plac eto know if it is sutract or SLT
-    `OR2(carryOut[0], isSubtract, isSubtract);  //carryOut[0] = isSubract anywhere we need to subtract we need carryout
-
-
-    generate
-        genvar i;
-        for (i=0; i<32; i=i+1)
-	//makes mini ALU for each bit
-        begin
-            aluBitSlice aluBitSlice (
-                .carryOut (carryOut[i+1]),
-                .initialResult (initialResult[i]),
-                .a (operandA[i]),
-                .b (operandB[i]),
-                .carryIn (carryOut[i]),
-                .isSubtract (isSubtract),
-                .s0 (command[0]),
-                .s1 (command[1]),
-                .s2 (command[2])
-            );
-        end
-    endgenerate
-
-    `OR2(carryout, carryOut[32], carryOut[32]); // carryout[32] = carryout set the carryout of the last bit to the final carryout
-
-    didOverflow overflowCalc( // looks at most significant bit and checks if it will overflow
-        .overflow (overflow),
-        .a (operandA[31]),
-        .b (operandB[31]),
-        .s (initialResult[31]),
-        .sub (isSubtract)
-    );
-
-    //SLT Module for . Uses outputs of subtractor
-    wire s2inv;
-    wire overflowInv;
-    wire isSLTinv;
-    wire isSLT;
-    wire SLTval;
-
-    `NOT1(s2inv, command[2]);
-    `NOT1(overflowInv, overflow);
-    `AND3(isSLT, s2inv, command[0], command[1]);
-    `NOT1(isSLTinv, isSLT);
-    `AND3(SLTval, initialResult[31], overflowInv, isSLT);
-
-    generate
-        genvar j;
-        for (j=0; j<32; j=j+1)
-        begin
-            `AND2(result[j], initialResult[j], isSLTinv);
-        end
-    endgenerate
-
-    `OR2(result[0], initialResult[0], SLTval);
-
-    // determines if result is zero
-    isZero zeroCalc(
-        .bitt (result),
-        .out (zero)
-    );
+  always @(ALUcommand) begin
+    case (ALUcommand)
+      `ADD:  begin muxindex = 0; invert=0; end
+      `SUB:  begin muxindex = 0; invert=1; end
+      `Xor:  begin muxindex = 1; invert=0; end
+      `SLT:  begin muxindex = 2; invert=0; end
+      `Nand: begin muxindex = 3; invert=0; end
+      `And:  begin muxindex = 3; invert=1; end
+      `Nor:  begin muxindex = 4; invert=0; end
+      `Or:   begin muxindex = 4; invert=1; end
+    endcase
+  end
 endmodule

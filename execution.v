@@ -87,13 +87,7 @@ module execution
                     .sel(IsBranch),
                     .out(shift2));
 
-    alu aluadd(.carryout(aluaddcarryout),
-                    .zero(aluaddzero),
-                    .overflow(aluaddoverflow),
-                    .result(aluaddsum),
-                    .operandA(PCplus4),
-                    .operandB(shift2),
-                    .command(3'b000));
+    assign aluaddsum = PCplus4 + shift2;
 
     mux2 #(32) muxisbranch(.in0(PCplus4),
                     .in1(aluaddsum),
@@ -134,13 +128,14 @@ module execution
                     .RegWrite(RegWr),
                     .Clk(clk));
 
-    alu alumain(.carryout(carryout),
+    ALU alumain(.carryout(carryout),
                     .zero(zero),
                     .overflow(overflow),
                     .result(result),
                     .operandA(regDa),
                     .operandB(alusrcout),
                     .command(ALUctrl));
+
 
     assign SE = {{16{IMM16[15]}}, IMM16};
 
