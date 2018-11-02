@@ -35,22 +35,13 @@ module cpu_test ();
   	reset = 0; #10;
   	reset = 1; #10;
   	reset = 0; #10;
-
-
-  	$display("Time | PC       | Instruction");
-  	repeat(4) begin
-          $display("%4t | %h | %h", $time, cpu.PCcount, cpu.instruction); #20 ;
-          end
-  	$display("... more execution (see waveform)");
     #1000
     if(cpu.register.RegisterOutput[2] != 32'h37 || cpu.register.RegisterOutput[4] != 32'hb || cpu.register.RegisterOutput[8] != 32'hb || cpu.register.RegisterOutput[9] != 32'h37)
           $display("FAILED ADD_N TEST. Expected: %h, ACTUAL: %h", 32'h37, cpu.register.RegisterOutput[2]);
     else
           $display("PASSED ADD_N TEST");
 
-  	// End execution after some time delay - adjust to match your program
-  	// or use a smarter approach like looking for an exit syscall or the
-  	// PC to be the value of the last instruction in your program.
+
   	#2000 $finish();
       end
 
