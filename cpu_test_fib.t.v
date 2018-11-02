@@ -1,4 +1,4 @@
-`include "execution.v"
+`include "cpu.v"
 
 //------------------------------------------------------------------------
 // Test bench for fibbanocci sequence
@@ -14,7 +14,7 @@ module cpu_test_fib ();
     always #10 clk = !clk;
 
     // Instantiate CPU
-    execution cpu(.clk(clk));
+    cpu_all cpu(.clk(clk));
 
     // Filenames for memory images and VCD dump file
     reg [1023:0] mem_text_fn;

@@ -10,7 +10,7 @@
 `include "instructiondecoder.v"
 `include "lut.v"
 
-module execution
+module cpu_all
 (
     input 	          clk
   //,
