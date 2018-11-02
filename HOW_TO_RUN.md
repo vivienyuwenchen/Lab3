@@ -1,23 +1,23 @@
 # How to Run Test Benches
 
 ```shell
-make run
+$ make run
 ```
 
 ## To run CPU tests
 
 ```shell
-make cpu
+$ make cpu
 ```
 
-# To run submodule test benches
+## To run submodule test benches
 
 ```shell
-make tests
+$ make tests
 ```
 
-# To clean directory
+## To clean directory
 
 ```shell
-make clean
+$ make clean
 ```
