@@ -1,7 +1,9 @@
 `include "cpu.v"
 
 //------------------------------------------------------------------------
-// Test bench for fibbanocci sequence
+// Test bench for Fibbanocci sequence
+// This tests for ADD, ADDI, BNE, LW, SW, J, JAL, JR functionalities
+// The final answer can be found in $v0$
 //------------------------------------------------------------------------
 
 module cpu_test_fib ();
@@ -16,18 +18,11 @@ module cpu_test_fib ();
     // Instantiate CPU
     cpu_all cpu(.clk(clk));
 
-    // Filenames for memory images and VCD dump file
-    reg [1023:0] mem_text_fn;
-    reg [1023:0] mem_data_fn;
-    reg [1023:0] dump_fn;
-    reg init_data = 1;      // Initializing .data segment is optional
-
     initial begin
 
 
     $readmemh("fib_func.dat", cpu.mem.mem,0);
-  	// Dump waveforms to file
-  	// Note: arrays (e.g. memory) are not dumped by default
+
   	$dumpfile("cpu_fib.vcd");
   	$dumpvars();
 
@@ -37,7 +32,7 @@ module cpu_test_fib ();
   	reset = 0; #10;
 
     #1000000
-    if(cpu.register.RegisterOutput[2] != 32'h3a) begin// || cpu.register.RegisterOutput[4] != 32'hb || cpu.register.RegisterOutput[8] != 32'hb || cpu.register.RegisterOutput[9] != 32'h37)
+    if(cpu.register.RegisterOutput[2] != 32'h3a) begin
           $display("FAILED FIB TEST");
           $display("$v0: Expected: %h, ACTUAL: %h", 32'h3a, cpu.register.RegisterOutput[2]);
           end
