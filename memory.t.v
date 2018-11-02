@@ -2,41 +2,69 @@
 // Test Bench for Memory Module
 //------------------------------------------------------------------------
 
+`timescale 1 ns / 1 ps
 `include "memory.v"
 
 module testMemory();
 
-    reg clk, regWE;
-    reg[31:0] Addr;
+    reg clk;
+    reg WrEn;
+    reg[31:0] DataAddr;
     reg[31:0] DataIn;
-    wire[31:0]  DataOut;
+    wire[31:0] DataOut;
+    reg[31:0] InstrAddr;
+    wire[31:0] Instruction;
 
-    memory_test Instruction_Memory(.clk(clk), .regWE(regWE), .Addr(Addr), .DataIn(DataIn), .DataOut(DataOut));
+    memory mem(.clk(clk),
+                    .WrEn(WrEn),
+                    .DataAddr(DataAddr),
+                    .DataIn(DataIn),
+                    .DataOut(DataOut),
+                    .InstrAddr(InstrAddr),
+                    .Instruction(Instruction));
+
+    initial clk=0;
+    always #10 clk = !clk;
 
     initial begin
-        Addr = 0;
-        if (DataOut == 32'h1000_0001) begin
+        $display("Memory Test Starting...");
+
+        // Instruction memory and data memory output tests
+        InstrAddr = 32'h0; DataAddr = 32'h0; #1000
+        if (Instruction == 32'h2004000a && DataOut == 32'h2004000a) begin
             $display("Test 1 Passed");
         end
         else begin
-            $display("Test 1 Failed");
+            $display("Test 1 Failed %h", DataOut);
         end
 
-        Addr = 1;
-        if (DataOut == 32'h1000_000F) begin
+        InstrAddr = 32'h10; DataAddr = 32'h10; #1000
+        if (Instruction == 32'h11040003 && DataOut == 32'h11040003) begin
             $display("Test 2 Passed");
         end
         else begin
             $display("Test 2 Failed");
         end
 
-        Addr = 2;
-        if (DataOut == 32'h0000_0000) begin
+        InstrAddr = 32'h14; DataAddr = 32'h14; #1000
+        if (Instruction == 32'h01284820 && DataOut == 32'h01284820) begin
             $display("Test 3 Passed");
         end
         else begin
             $display("Test 3 Failed");
         end
+
+        // Data memory input and output tests
+        WrEn = 1'b1; #1000 DataAddr = 32'hFFFFFFFC; #1000 DataIn = 32'h12345678; #1000
+        if (DataOut == 32'h12345678) begin
+            $display("Test 4 Passed");
+        end
+        else begin
+            $display("Test 4 Failed, %h", DataOut);
+        end
+
+        $display("Memory Test Done!");
+        $finish;
     end
 
 endmodule

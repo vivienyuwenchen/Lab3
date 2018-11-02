@@ -22,7 +22,7 @@ module memory
 
     always @(posedge clk) begin
         if (WrEn) begin
-            mem[DataAddr] <= DataIn;
+            mem[DataIndex] <= DataIn;
         end
     end
 
