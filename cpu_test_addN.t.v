@@ -20,7 +20,6 @@ module cpu_test_addN ();
 
     initial begin
 
-
     $readmemh("addN.dat", cpu.mem.mem,0); // load assembly instructions into memory
   	// Dump waveforms to file
   	$dumpfile("cputest.vcd");
@@ -32,15 +31,18 @@ module cpu_test_addN ();
   	reset = 0; #10;
     #1000
     if(cpu.register.RegisterOutput[2] != 32'h37 || cpu.register.RegisterOutput[4] != 32'hb || cpu.register.RegisterOutput[8] != 32'hb || cpu.register.RegisterOutput[9] != 32'h37) begin
-          $display("FAILED ADD_N TEST. Expected: %h, ACTUAL: %h", 32'h37, cpu.register.RegisterOutput[2]);
-          $display("FAILED ADD_N TEST. Expected: %h, ACTUAL: %h", 32'hb, cpu.register.RegisterOutput[4]);
-          $display("FAILED ADD_N TEST. Expected: %h, ACTUAL: %h", 32'h3b, cpu.register.RegisterOutput[8]);
-          $display("FAILED ADD_N TEST. Expected: %h, ACTUAL: %h", 32'h37, cpu.register.RegisterOutput[9]);
+          $display("----------------------------------------");
+          $display("FAILED ADD_N TEST. $v0$: Expected: %h, ACTUAL: %h", 32'h37, cpu.register.RegisterOutput[2]);
+          $display("FAILED ADD_N TEST. $a0$:  Expected: %h, ACTUAL: %h", 32'hb, cpu.register.RegisterOutput[4]);
+          $display("FAILED ADD_N TEST. $t0$: Expected: %h, ACTUAL: %h", 32'h3b, cpu.register.RegisterOutput[8]);
+          $display("FAILED ADD_N TEST. $t1$: Expected: %h, ACTUAL: %h", 32'h37, cpu.register.RegisterOutput[9]);
+          $display("----------------------------------------");
           end
-    else
+    else begin
+          $display("----------------------------------------");
           $display("PASSED ADD_N TEST");
-
-
+          $display("----------------------------------------");
+          end
   	#2000 $finish();
       end
 

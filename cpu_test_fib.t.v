@@ -20,7 +20,6 @@ module cpu_test_fib ();
 
     initial begin
 
-
     $readmemh("fib_func.dat", cpu.mem.mem,0);
 
   	$dumpfile("cpu_fib.vcd");
@@ -33,12 +32,16 @@ module cpu_test_fib ();
 
     #1000000
     if(cpu.register.RegisterOutput[2] != 32'h3a) begin
+          $display("----------------------------------------");
           $display("FAILED FIB TEST");
           $display("$v0: Expected: %h, ACTUAL: %h", 32'h3a, cpu.register.RegisterOutput[2]);
+          $display("----------------------------------------");
           end
-   else
+   else begin
+         $display("----------------------------------------");
          $display("PASSED FIB TEST");
-
+         $display("----------------------------------------");
+         end
   	#2000 $finish();
       end
 

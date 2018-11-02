@@ -13,9 +13,6 @@
 module cpu_all
 (
     input 	          clk
-  //,
-    //output reg [31:0] regDa,
-    //output reg [31:0] regDb
 );
 
     // control wires
@@ -27,9 +24,9 @@ module cpu_all
     wire [4:0] RT, RS, RD, SHAMT;
     wire [15:0] IMM16;
     wire [25:0] TA;
-    // unused wires
+  
     wire aluadd4carryout, aluadd4zero, aluadd4overflow, aluaddcarryout, aluaddzero, aluaddoverflow, carryout;
-    // sort later
+
     wire [31:0] isjrout, PCplus4, shift2, aluaddsum, isbranchout, isjumpout, mem2regout, alusrcout, INSTRUCT;
     wire zero, overflow;
     wire [31:0] regDa, regDb, regDin, SE, result;
