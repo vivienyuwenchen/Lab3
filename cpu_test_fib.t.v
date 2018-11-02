@@ -20,7 +20,7 @@ module cpu_test_fib ();
 
     initial begin
 
-    $readmemh("fib_func.dat", cpu.mem.mem,0);
+    $readmemh("./dat/fib_func.dat", cpu.mem.mem,0);
 
   	$dumpfile("cpu_fib.vcd");
   	$dumpvars();

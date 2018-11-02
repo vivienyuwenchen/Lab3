@@ -20,7 +20,7 @@ module cpu_test_addN ();
 
     initial begin
 
-    $readmemh("addN.dat", cpu.mem.mem,0); // load assembly instructions into memory
+    $readmemh("./dat/addN.dat", cpu.mem.mem,0); // load assembly instructions into memory
   	// Dump waveforms to file
   	$dumpfile("cputest.vcd");
   	$dumpvars();

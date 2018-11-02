@@ -21,7 +21,7 @@ module cpu_test_fib ();
 
     initial begin
 
-    $readmemh("xor_sub_slt.dat", cpu.mem.mem,0);
+    $readmemh("./dat/xor_sub_slt.dat", cpu.mem.mem,0);
 
   	$dumpfile("cpu_xor.vcd");
   	$dumpvars();
