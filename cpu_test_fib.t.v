@@ -25,7 +25,7 @@ module cpu_test_fib ();
     initial begin
 
 
-    $readmemh("fib.dat", cpu.mem.mem,0);
+    $readmemh("fib_func.dat", cpu.mem.mem,0);
   	// Dump waveforms to file
   	// Note: arrays (e.g. memory) are not dumped by default
   	$dumpfile("cpu_fib.vcd");
@@ -36,18 +36,10 @@ module cpu_test_fib ();
   	reset = 1; #10;
   	reset = 0; #10;
 
-
-  	$display("Time | PC       | Instruction");
-  	repeat(4) begin
-          $display("%4t | %h | %h", $time, cpu.PCcount, cpu.instruction); #20 ;
-          end
-  	$display("... more execution (see waveform)");
-    #10000
-    if(cpu.register.RegisterOutput[2] != 32'h1 || cpu.register.RegisterOutput[4] != 32'h3a || cpu.register.RegisterOutput[5] != 32'ha) begin// || cpu.register.RegisterOutput[4] != 32'hb || cpu.register.RegisterOutput[8] != 32'hb || cpu.register.RegisterOutput[9] != 32'h37)
+    #1000000
+    if(cpu.register.RegisterOutput[2] != 32'h3a) begin// || cpu.register.RegisterOutput[4] != 32'hb || cpu.register.RegisterOutput[8] != 32'hb || cpu.register.RegisterOutput[9] != 32'h37)
           $display("FAILED FIB TEST");
-          $display("$v0: Expected: %h, ACTUAL: %h", 32'h1, cpu.register.RegisterOutput[2]);
-          $display("$a0: %h, ACTUAL: %h", 32'h3a, cpu.register.RegisterOutput[4]);
-          $display("$a1: %h, ACTUAL: %h", 32'ha, cpu.register.RegisterOutput[5]);
+          $display("$v0: Expected: %h, ACTUAL: %h", 32'h3a, cpu.register.RegisterOutput[2]);
           end
    else
          $display("PASSED FIB TEST");
