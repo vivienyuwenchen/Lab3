@@ -1,4 +1,7 @@
-// Adder circuit
+//------------------------------------------------------------------------
+// Supporting Files for ALU Module
+//------------------------------------------------------------------------
+
 `define AND and
 `define AND4 and
 `define OR or
@@ -6,7 +9,7 @@
 `define NOT not
 `define NAND nand
 `define NOR nor
-`define OR5 or 
+`define OR5 or
 
 // Mux for 5 inputs for bit slices
 // AND gates set to 0 anything not called with 5 bit input

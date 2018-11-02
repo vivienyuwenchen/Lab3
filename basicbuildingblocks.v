@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Basic building block modules
+// Basic building block modules (DFF and MUX2)
 //-----------------------------------------------------------------------------
 
 // D flip-flop with parameterized bit width (default: 1-bit)
