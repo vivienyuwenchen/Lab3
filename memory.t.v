@@ -27,7 +27,10 @@ module testMemory();
     always #10 clk = !clk;
 
     initial begin
-        $display("Memory Test Starting...");
+        $display("--------------------------------------------------");
+        $display("Memory tests starting...");
+
+        $readmemh("./dat/addN.dat", mem.mem, 0);
 
         // Instruction memory and data memory output tests
         InstrAddr = 32'h0; DataAddr = 32'h0; #1000
@@ -55,15 +58,24 @@ module testMemory();
         end
 
         // Data memory input and output tests
-        WrEn = 1'b1; #1000 DataAddr = 32'hFFFFFFFC; #1000 DataIn = 32'h12345678; #1000
+        WrEn = 1'b1; DataAddr = 32'hFFFFFFFC; DataIn = 32'h12345678; #1000
         if (DataOut == 32'h12345678) begin
             $display("Test 4 Passed");
         end
         else begin
-            $display("Test 4 Failed, %h", DataOut);
+            $display("Test 4 Failed");
         end
 
-        $display("Memory Test Done!");
+        WrEn = 1'b0; DataAddr = 32'hFFFFFFFC; DataIn = 32'habcdef90; #1000
+        if (DataOut == 32'h12345678) begin
+            $display("Test 5 Passed");
+        end
+        else begin
+            $display("Test 5 Failed");
+        end
+
+        $display("Memory tests done!");
+        $display("--------------------------------------------------");
         $finish;
     end
 

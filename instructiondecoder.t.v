@@ -22,8 +22,8 @@ module instructiontest();
                     .instruction(instruction));
 
     initial begin
-
-        $display("Instruction Decoder Test Starting...");
+        $display("--------------------------------------------------");
+        $display("Instruction decoder tests starting...");
 
         // J-type instruction
         instruction = 32'h0c000016; #1000
@@ -82,7 +82,7 @@ module instructiontest();
             $display("FUNCT: %b, Expected: 100000", FUNCT);
         end
 
-        $display("Instruction Decoder Test Done!");
-
+        $display("Instruction decoder tests done!");
+        $display("--------------------------------------------------");
     end
 endmodule

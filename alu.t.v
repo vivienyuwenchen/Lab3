@@ -11,10 +11,10 @@ module testALU();
     ALU aluer (result, carryout, zero, overflow, operandA, operandB, command);
 
     initial begin
-        $dumpfile("alu.vcd");
-        $dumpvars();
+        $display("--------------------------------------------------");
+        $display("ALU tests starting...");
 
-        $display("Starting ADD tests");
+        $display("Starting ADD tests...");
         // ADD test 1
         command=`ADD; operandA=32'h000A0000; operandB=32'h00000070; #5000   // carryout = 0
         if(result != 32'h000A0070)
@@ -56,7 +56,7 @@ module testALU();
         if(overflow != 1'b1)
         $display("ADD test 4 - overflow: %h, expected: 1", overflow);
 
-        $display("Starting SUB tests");
+        $display("Starting SUB tests...");
         // SUB test 1
         command=`SUB; operandA=32'h000A0000; operandB=32'hFFFFFF90; #5000
         if(result != 32'h000A0070)
@@ -98,7 +98,7 @@ module testALU();
         if(overflow != 1'b1)
         $display("SUB test 4 - overflow: %h, expected: 1", overflow);
 
-        $display("Starting XOR tests");
+        $display("Starting XOR tests...");
         // XOR test 1
         command=`Xor; operandA=32'h88888888; operandB=32'h11111111; #5000
         if(result != 32'h99999999)
@@ -118,7 +118,7 @@ module testALU();
         if(zero != 1'b0)
         $display("XOR test 3 - zero: %h, expected: 0", zero);
 
-        $display("Starting SLT tests");
+        $display("Starting SLT tests...");
         // SLT test 1
         command=`SLT; operandA=32'h00000001; operandB=32'h05000000; #5000                                   //positive numbers
         if(result != 32'h00000001)
@@ -145,98 +145,99 @@ module testALU();
         $display("SLT test 4 - result: %h, expected: 00000000", result);
         // SLT test 5
         command=`SLT; operandA=32'h80000000; operandB=32'h05000000; #5000                                   //positive and negative numbers
-         if(result != 32'h00000001) 
+         if(result != 32'h00000001)
         $display("SLT test 5 - result: %h, expected: 00000001", result);
         // SLT test 6
         command=`SLT; operandA=32'h05000000; operandB=32'h80000000; #5000
-         if(result != 32'h00000000) 
+         if(result != 32'h00000000)
         $display("SLT test 6 - result: %h, expected: 00000000", result);
         // SLT test 7
         command=`SLT; operandA=32'h00000000; operandB=32'h00000000; #5000                                   //zeros
-         if(result != 32'h00000000) 
+         if(result != 32'h00000000)
         $display("SLT test 7 - result: %h, expected: 00000000", result);
 
-        $display("Starting AND tests");
+        $display("Starting AND tests...");
         // AND test 1
         command=`And; operandA=32'h88888888; operandB=32'h11111111; #5000
-         if(result != 32'h00000000) 
+         if(result != 32'h00000000)
         $display("AND test 1 - result: %h, expected: 00000000", result);
-         if(zero != 1'b1) 
+         if(zero != 1'b1)
         $display("AND test 1 - zero: %h, expected: 1", zero);
         // AND test 2
         command=`And; operandA=32'hCCCCCCCC; operandB=32'hCCCCCCCC; #5000
-         if(result != 32'hCCCCCCCC) 
+         if(result != 32'hCCCCCCCC)
         $display("AND test 2 - result: %h, expected: CCCCCCCC", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("AND test 2 - zero: %h, expected: 0", zero);
         // AND test 3
         command=`And; operandA=32'hBBBBBBBB; operandB=32'h55555555; #5000
-         if(result != 32'h11111111) 
+         if(result != 32'h11111111)
         $display("AND test 3 - result: %h, expected: 11111111", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("AND test 3 - zero: %h, expected: 0", zero);
 
-        $display("Starting NAND tests");
+        $display("Starting NAND tests...");
         // NAND test 1
         command=`Nand; operandA=32'h88888888; operandB=32'h11111111; #5000
-         if(result != 32'hFFFFFFFF) 
+         if(result != 32'hFFFFFFFF)
         $display("NAND test 1 - result: %h, expected: FFFFFFFF", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("NAND test 1 - zero: %h, expected: 0", zero);
         // NAND test 2
         command=`Nand; operandA=32'hCCCCCCCC; operandB=32'hCCCCCCCC; #5000
-         if(result != 32'h33333333) 
+         if(result != 32'h33333333)
         $display("NAND test 2 - result: %h, expected: 33333333", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("NAND test 2 - zero: %h, expected: 0", zero);
         // NAND test 3
         command=`Nand; operandA=32'hBBBBBBBB; operandB=32'h55555555; #5000
-         if(result != 32'hEEEEEEEE) 
+         if(result != 32'hEEEEEEEE)
         $display("NAND test 3 - result: %h, expected: EEEEEEEE", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("NAND test 3 - zero: %h, expected: 0", zero);
 
-        $display("Starting NOR tests");
+        $display("Starting NOR tests...");
         // NOR test 1
         command=`Nor; operandA=32'h88888888; operandB=32'h11111111; #5000
-         if(result != 32'h66666666) 
+         if(result != 32'h66666666)
         $display("NOR test 1 - result: %h, expected: 66666666", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("NOR test 1 - zero: %h, expected: 0", zero);
         // NOR test 2
         command=`Nor; operandA=32'hCCCCCCCC; operandB=32'hCCCCCCCC; #5000
-         if(result != 32'h33333333) 
+         if(result != 32'h33333333)
         $display("NOR test 2 - result: %h, expected: 33333333", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("NOR test 2 - zero: %h, expected: 0", zero);
         // NOR test 3
         command=`Nor; operandA=32'hBBBBBBBB; operandB=32'h55555555; #5000
-         if(result != 32'h00000000) 
+         if(result != 32'h00000000)
         $display("NOR test 3 - result: %h, expected: 00000000", result);
-         if(zero != 1'b1) 
+         if(zero != 1'b1)
         $display("NOR test 3 - zero: %h, expected: 1", zero);
 
-        $display("Starting OR tests");
+        $display("Starting OR tests...");
         // OR test 1
         command=`Or; operandA=32'h88888888; operandB=32'h11111111; #5000
-         if(result != 32'h99999999) 
+         if(result != 32'h99999999)
         $display("OR test 1 - result: %h, expected: 99999999", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("OR test 1 - zero: %h, expected: 0", zero);
         // OR test 2
         command=`Or; operandA=32'hCCCCCCCC; operandB=32'hCCCCCCCC; #5000
-         if(result != 32'hCCCCCCCC) 
+         if(result != 32'hCCCCCCCC)
         $display("OR test 2 - result: %h, expected: CCCCCCCC", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("OR test 2 - zero: %h, expected: 0", zero);
         // OR test 3
         command=`Or; operandA=32'hBBBBBBBB; operandB=32'h55555555; #5000
-         if(result != 32'hFFFFFFFF) 
+         if(result != 32'hFFFFFFFF)
         $display("OR test 3 - result: %h, expected: FFFFFFFF", result);
-         if(zero != 1'b0) 
+         if(zero != 1'b0)
         $display("OR test 3 - zero: %h, expected: 0", zero);
 
-        $display("Done");
+        $display("ALU tests done!");
+        $display("--------------------------------------------------");
         $finish();
     end
 endmodule

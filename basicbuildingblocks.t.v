@@ -1,6 +1,7 @@
 //------------------------------------------------------------------------
 // Test Bench for DFF, MUX2
 //------------------------------------------------------------------------
+
 `timescale 1 ns / 1 ps
 `include "basicbuildingblocks.v"
 
@@ -21,6 +22,7 @@ module testDFF();
     always #10 clk=!clk;    // 50MHz Clock
 
     initial begin
+        $display("--------------------------------------------------");
         $display("Testing DFF...");
         enable=1'b1; d=32'hAAAAAAAA; #1000
         if(q != 32'hAAAAAAAA)
@@ -35,6 +37,7 @@ module testDFF();
         if(q != 32'hCCCCCCCC)
             $display("ERROR Expected: CCCCCCCC, Got: %h", q);
         $display("Done with DFF!");
+        $display("--------------------------------------------------");
         $finish();
     end
 endmodule

@@ -9,7 +9,7 @@ module testlut();
     reg  [5:0]  OP, FUNCT;
     reg         zero, overflow;
     wire        RegDst, RegWr, MemWr, MemToReg, ALUsrc, IsJump, IsJAL, IsJR, IsBranch;
-    wire [3:0]  ALUctrl;
+    wire [2:0]  ALUctrl;
 
     instructionLUT lut(.OP(OP),
                     .FUNCT(FUNCT),
@@ -27,7 +27,8 @@ module testlut();
                     .IsBranch(IsBranch));
 
     initial begin
-        $display("Starting instruction LUT test...");
+        $display("--------------------------------------------------");
+        $display("Instruction LUT tests starting...");
 
         // Test 1: Load Word
         $display("Testing LW...");
@@ -324,6 +325,7 @@ module testlut();
         if(IsBranch != 1'b0)
             $display("error with SLT IsBranch; Expected: 0, Got: %d", IsBranch);
 
-        $display("Done!");
+        $display("Instruction LUT tests done!!");
+        $display("--------------------------------------------------");
     end
 endmodule

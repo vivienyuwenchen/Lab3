@@ -60,6 +60,7 @@ module hw4testbenchharness();
   // Display test results ('dutpassed' signal) once 'endtest' goes high
   always @(posedge endtest) begin
     $display("DUT passed?: %b", dutpassed);
+    $display("Register file tests done!");
   end
 
 endmodule
@@ -112,6 +113,9 @@ output reg		Clk
     dutpassed = 1;
     #10
 
+  $display("--------------------------------------------------");
+  $display("Register file tests starting...");
+
   // Test Case 1:
   //   Write '42' to register 2, verify with Read Ports 1 and 2
   WriteRegister = 5'd2;
@@ -152,7 +156,7 @@ output reg		Clk
   ReadRegister2 = 5'd5;
   #5 Clk=1; #5 Clk=0;
 
-  if((ReadData1 !== 'bx) || (ReadData2 !== 'bx)) begin
+  if((ReadData1 !== 0) || (ReadData2 !== 0)) begin
     dutpassed = 0;
     $display("Test Case 3 Failed");
   end
@@ -168,7 +172,7 @@ output reg		Clk
   ReadRegister2 = 5'd31;
   #5 Clk=1; #5 Clk=0;
 
-  if((ReadData1 !== 26) || (ReadData2 !== 'bx)) begin
+  if((ReadData1 !== 26) || (ReadData2 !== 0)) begin
     dutpassed = 0;
     $display("Test Case 4 Failed");
   end
